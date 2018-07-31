@@ -1,0 +1,33 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayabbhiNet45", "net45\PayabbhiNet45.csproj", "{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayabbhiTest45", "test\PayabbhiTest45.csproj", "{362A146C-8220-43DB-B5CA-99E87AC0204F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Debug|x86.Build.0 = Debug|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Release|x86.ActiveCfg = Release|Any CPU
+		{FBDBF28B-C7DC-4B67-A4E5-193EDA1B2BEF}.Release|x86.Build.0 = Release|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Debug|x86.Build.0 = Debug|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Release|x86.ActiveCfg = Release|Any CPU
+		{362A146C-8220-43DB-B5CA-99E87AC0204F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

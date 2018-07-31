@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F20A98DC-94D8-4198-9D76-62B76793C7F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Payabbhi</RootNamespace>
+    <AssemblyName>Payabbhi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\payabbhi.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\Converter.cs" />
+    <Compile Include="..\src\PayabbhiResponse.cs" />
+    <Compile Include="..\src\PayabbhiEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\src\HttpClient.cs" />
+    <Compile Include="..\src\HttpMethod.cs" />
+    <Compile Include="..\src\Client.cs" />
+    <Compile Include="..\src\Payment.cs" />
+    <Compile Include="..\src\Refund.cs" />
+    <Compile Include="..\src\Order.cs" />
+    <Compile Include="..\src\Utility.cs" />
+    <Compile Include="..\src\Errors\BaseError.cs" />
+    <Compile Include="..\src\Errors\InvalidRequestError.cs" />
+    <Compile Include="..\src\Errors\AuthenticationError.cs" />
+    <Compile Include="..\src\Errors\ApiError.cs" />
+    <Compile Include="..\src\Errors\GatewayError.cs" />
+    <Compile Include="..\src\Errors\ApiConnectionError.cs" />
+    <Compile Include="..\src\Errors\ErrorFactory.cs" />
+    <Compile Include="..\src\Errors\SignatureVerificationError.cs" />
+    <Compile Include="..\src\Constants.cs" />
+    <Compile Include="..\src\IHttpWebRequest.cs" />
+    <Compile Include="..\src\IHttpWebResponse.cs" />
+    <Compile Include="..\src\IHttpWebRequestFactory.cs" />
+    <Compile Include="..\src\PayabbhiHttpWebRequest.cs" />
+    <Compile Include="..\src\PayabbhiHttpWebResponse.cs" />
+    <Compile Include="..\src\PayabbhiHttpWebRequestFactory.cs" />
+    <Compile Include="..\src\CurrentOS.cs" />
+    <Compile Include="..\src\EmiInfo.cs" />
+    <Compile Include="..\src\OSHelper.cs" />
+    <Compile Include="..\src\PayabbhiList.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

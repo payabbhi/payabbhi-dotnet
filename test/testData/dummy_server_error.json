@@ -1,0 +1,7 @@
+{
+   "error": {
+     "message": "There is some problem with the server",
+      "type": "server_error",
+      "field": "500"
+   }
+}

@@ -1,0 +1,19 @@
+*.DS_Store
+*.userprefs
+/net40/obj
+/net40/bin
+/net40/*.sln
+/net45/obj
+/net45/bin
+/net45/*.sln
+bin
+packages
+test/obj/
+*.snk
+dist
+
+# Build related
+tools/**
+!tools/packages.config
+.dotnet/
+.vs/

@@ -1,0 +1,7 @@
+{
+   "error": {
+     "message": "Incorrect access_id or secret_key provided.",
+      "type": "authentication_error",
+      "field": ""
+   }
+}

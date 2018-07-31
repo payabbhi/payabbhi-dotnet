@@ -1,0 +1,7 @@
+{
+   "error": {
+     "message": "Request URL /api/v1/payments123 does not exist. Please check documentation",
+      "type": "invalid_url",
+      "field": ""
+   }
+}

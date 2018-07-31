@@ -1,0 +1,7 @@
+{
+   "error": {
+     "message": "Unable to create refund. Please try again.",
+      "type": "gateway_error",
+      "field": "502"
+   }
+}

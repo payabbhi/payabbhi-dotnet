@@ -1,0 +1,43 @@
+{
+    "refund_status": "partial",
+    "service_tax": 0,
+    "currency": "INR",
+    "id": "dummy_payment_id",
+    "payout_type": "Cr",
+    "fee": 5,
+    "payout_amount": 995,
+    "card": "visa-debit",
+    "international": false,
+    "method": "card",
+    "status": "refunded",
+    "description": "new payment done",
+    "order_id": "dummy_order_id",
+    "object": "payment",
+    "bank": "",
+    "refunds": {
+        "total_count": 1,
+        "object": "list",
+        "data": [
+            {
+                "payment_id": "dummy_payment_id",
+                "created_at": 1495889335,
+                "object": "refund",
+                "currency": "INR",
+                "amount": 1,
+                "notes": {},
+                "id": "rfnd_WJLmKdUEfj92snLF"
+            }
+        ]
+    },
+    "refunded_amount": 1,
+    "notes": {
+        "merchant": "id"
+    },
+    "email": "test@ppm.com",
+    "wallet": "",
+    "amount": 1000,
+    "contact": "9999999999",
+    "error_description": "",
+    "error_code": "",
+    "created_at": 1495872181
+}

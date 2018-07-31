@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8533EAB8-CBA4-467C-AFA1-853F8F33EDE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PayabbhiTest40</RootNamespace>
+    <AssemblyName>PayabbhiTest40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.2.0.3\lib\net40\NSubstitute.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TestClient.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="TestPayment.cs" />
+    <Compile Include="TestOrder.cs" />
+    <Compile Include="TestRefund.cs" />
+    <Compile Include="TestUtility.cs" />
+    <Compile Include="MockHttpWebResponse.cs" />
+    <Compile Include="MockHttpWebRequest.cs" />
+    <Compile Include="MockHttpWebRequestFactory.cs" />
+    <Compile Include="TestError.cs" />
+    <Compile Include="TestCurrentOS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="testData\dummy_payment_collection.json" />
+    <None Include="testData\dummy_authentication.json" />
+    <None Include="testData\dummy_gateway_error.json" />
+    <None Include="testData\dummy_http_code_502_with_empty_message.json" />
+    <None Include="testData\dummy_invalid_request.json" />
+    <None Include="testData\dummy_order_collection_filters.json" />
+    <None Include="testData\dummy_order_collection.json" />
+    <None Include="testData\dummy_order_payments.json" />
+    <None Include="testData\dummy_order.json" />
+    <None Include="testData\dummy_payment_capture.json" />
+    <None Include="testData\dummy_payment_collection_filters.json" />
+    <None Include="testData\dummy_payment_refund.json" />
+    <None Include="testData\dummy_payment_refunds_collection_filters.json" />
+    <None Include="testData\dummy_payment_refunds.json" />
+    <None Include="testData\dummy_payment_with_emi.json" />
+    <None Include="testData\dummy_payment_with_upi.json" />
+    <None Include="testData\dummy_payment.json" />
+    <None Include="testData\dummy_refund_collection_filters.json" />
+    <None Include="testData\dummy_refund_collection.json" />
+    <None Include="testData\dummy_refund_create.json" />
+    <None Include="testData\dummy_refund.json" />
+    <None Include="testData\dummy_server_error.json" />
+    <None Include="testData\dummy_status_not_found.json" />
+    <None Include="testData\dummy_invalid_data.json" />
+    <None Include="testData\dummy_invalid_json.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="testData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\net40\PayabbhiNet40.csproj">
+      <Project>{F20A98DC-94D8-4198-9D76-62B76793C7F2}</Project>
+      <Name>PayabbhiNet40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
