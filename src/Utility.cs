@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 
 namespace Payabbhi
 {
@@ -30,12 +31,41 @@ namespace Payabbhi
 			{
 				throw new Error.InvalidRequestError(Constants.Messages.InvalidArgumentError, null, null, HttpStatusCode.Unused);
 			}
-			return VerifySignature(payload, expectedSignature);
+			return VerifySignature(payload, expectedSignature,Client.SecretKey);
 		}
 
-		bool VerifySignature(string payload, string expectedSignature)
+		/// <summary>
+		/// Verifies the webhook signature.
+		/// </summary>
+		/// <returns><c>true</c>, if webhook signature was verified, <c>false</c> otherwise.</returns>
+		/// <param name="payload">Payload.</param>
+		/// <param name="actualSignature">Actual Signature.</param>
+		/// <param name="secret">Secret.</param>
+		/// <param name="replayInterval">Replay Interval.</param>
+		public bool VerifyWebhookSignature(string payload, string actualSignature, string secret, int replayInterval = 300)
 		{
-			string actualSignature = ComputeHash(Client.SecretKey, payload);
+			string expectedSignature = string.Empty;
+
+			var signatureMap = actualSignature.Split(',')
+							.Select (part  => part.Trim().Split('='))
+							.Where (part => part.Length == 2)
+							.ToDictionary (sp => sp[0], sp => sp[1]);
+
+			Int32 currentTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+			int signatureTimestamp=0;
+			Int32.TryParse(signatureMap["t"], out signatureTimestamp);
+
+			if ( !signatureMap.ContainsKey("t") || !signatureMap.ContainsKey("v1") || currentTimestamp - signatureTimestamp > replayInterval)
+			{
+				throw new Error.SignatureVerificationError(Constants.Messages.InvalidSignatureError, null, null);
+			}
+			string canonicalString = string.Format("{0}&{1}",payload,signatureMap["t"]);
+			return VerifySignature(canonicalString, signatureMap["v1"],secret);
+		}
+
+		bool VerifySignature(string payload, string expectedSignature, string secret)
+		{
+			string actualSignature = ComputeHash(secret, payload);
 			if (String.Compare(actualSignature, expectedSignature) != 0)
 			{
 				throw new Error.SignatureVerificationError(Constants.Messages.InvalidSignatureError, null, null);

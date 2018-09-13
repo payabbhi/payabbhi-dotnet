@@ -37,7 +37,32 @@ namespace UnitTesting.Payabbhi.Tests
 			options.Add("order_id", "dummy_order_id");
 			options.Add("payment_id", "dummy_payment_id");
 			var ex = Assert.Throws<SignatureVerificationError>(() => client.Utility.VerifyPaymentSignature(options));
-			Assert.That(ex.Message, Is.EqualTo("message: Invalid signature passed\n"));
+			Assert.That(ex.Message, Is.EqualTo("message: Invalid signature\n"));
+			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidSignatureError));
+			Assert.That(ex.Field, Is.EqualTo(null));
+		}
+
+		[Test]
+		public void TestVerifyWebhookSignature()
+		{
+			Init(ACCESSID, SECRETKEY);
+			string filepath = "dummy_event.json";
+			string payload = Helper.GetJsonString(filepath).Replace(System.Environment.NewLine, string.Empty);
+			string secret = "skw_live_jHNxKsDqJusco5hA";
+			string actualSignature = "t=1536577756, v1=d973a60a35f503bcac0844d34f5ec9ead8f2db3873ddd9b874da8fec799fa462";
+			Assert.IsTrue(client.Utility.VerifyWebhookSignature(payload,actualSignature,secret,999999999));
+		}
+
+		[Test]
+		public void TestVerifyWrongWebhookSignature()
+		{
+			Init(ACCESSID, SECRETKEY);
+			string filepath = "dummy_event.json";
+			string payload = Helper.GetJsonString(filepath).Replace(System.Environment.NewLine, string.Empty);
+			string secret = "skw_live_jHNxKsDqJusco5hA";
+			string actualSignature = "t=1536577756, v1=random";
+			var ex = Assert.Throws<SignatureVerificationError>(() => client.Utility.VerifyWebhookSignature(payload,actualSignature,secret));
+			Assert.That(ex.Message, Is.EqualTo("message: Invalid signature\n"));
 			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidSignatureError));
 			Assert.That(ex.Field, Is.EqualTo(null));
 		}
