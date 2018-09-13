@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Payabbhi;
 using Payabbhi.Error;
+using System;
 
 namespace UnitTesting.Payabbhi.Tests
 {
@@ -49,8 +50,13 @@ namespace UnitTesting.Payabbhi.Tests
 			string filepath = "dummy_event.json";
 			string payload = Helper.GetJsonString(filepath).Replace(System.Environment.NewLine, string.Empty);
 			string secret = "skw_live_jHNxKsDqJusco5hA";
-			string actualSignature = "t=1536577756, v1=d973a60a35f503bcac0844d34f5ec9ead8f2db3873ddd9b874da8fec799fa462";
-			Assert.IsTrue(client.Utility.VerifyWebhookSignature(payload,actualSignature,secret,999999999));
+			Int32 t = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+			string canonicalString = string.Format("{0}&{1}",payload,t);
+			string v1 = client.Utility.ComputeHash(secret,canonicalString);
+
+			string actualSignature = string.Format("t={0}, v1={1}",t,v1);
+
+			Assert.IsTrue(client.Utility.VerifyWebhookSignature(payload,actualSignature,secret));
 		}
 
 		[Test]

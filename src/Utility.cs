@@ -73,7 +73,7 @@ namespace Payabbhi
 			return true;
 		}
 
-		string ComputeHash(string secretKey, string payload)
+		public string ComputeHash(string secretKey, string payload)
 		{
 			var key = Encoding.UTF8.GetBytes(secretKey);
 			string hashString;
