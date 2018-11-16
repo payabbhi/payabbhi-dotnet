@@ -72,3 +72,13 @@ client.Utility.VerifyPaymentSignature(
     {"payment_id", '<paymentId>'}
   });
 ```
+
+### Verifying webhook signature
+Payabbhi .NET library provides utility functions for verifying the webhook signature. The snippet below demonstrates a typical usage:
+
+```csharp
+client.Utility.VerifyWebhookSignature(payload,actualSignature,secret);
+
+// replayInterval is optional
+client.Utility.VerifyWebhookSignature(payload,actualSignature,secret,replayInterval);
+```

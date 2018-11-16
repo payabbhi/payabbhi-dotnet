@@ -17,3 +17,4 @@ tools/**
 !tools/packages.config
 .dotnet/
 .vs/
+*/Properties/AssemblyInfo.cs
