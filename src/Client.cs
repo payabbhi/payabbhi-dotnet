@@ -13,6 +13,14 @@ namespace Payabbhi
 		Payment payment;
 		Order order;
 		Refund refund;
+        Product product;
+		Plan plan;
+		Customer customer;
+		Subscription subscription;
+		InvoiceItem invoiceItem;
+		Invoice invoice;
+		Transfer transfer;
+		Event evt;
 		Utility utility;
 		static IDictionary<string, string> appInfo;
 
@@ -131,6 +139,102 @@ namespace Payabbhi
 					refund = new Refund();
 				}
 				return refund;
+			}
+		}
+
+		public Product Product
+		{
+			get
+			{
+				if (product == null)
+				{
+					product = new Product();
+				}
+				return product;
+			}
+		}
+
+		public Plan Plan
+		{
+			get
+			{
+				if (plan == null)
+				{
+          plan = new Plan();
+				}
+				return plan;
+			}
+		}
+
+		public Customer Customer
+		{
+			get
+			{
+				if (customer == null)
+				{
+          customer = new Customer();
+				}
+				return customer;
+			}
+		}
+
+		public Subscription Subscription
+		{
+			get
+			{
+				if (subscription == null)
+				{
+          subscription = new Subscription();
+				}
+				return subscription;
+			}
+		}
+
+		public InvoiceItem InvoiceItem
+		{
+			get
+			{
+				if (invoiceItem == null)
+				{
+          invoiceItem = new InvoiceItem();
+				}
+				return invoiceItem;
+			}
+		}
+
+		public Invoice Invoice
+		{
+			get
+			{
+				if (invoice == null)
+				{
+          invoice = new Invoice();
+				}
+				return invoice;
+			}
+		}
+
+		public Transfer Transfer
+		{
+			get
+			{
+				if (transfer == null)
+				{
+          transfer = new Transfer();
+				}
+				return transfer;
+			}
+		}
+
+		public Event Event
+		{
+			get
+			{
+				if (evt == null)
+				{
+          evt = new Event();
+				}
+				return evt;
 			}
 		}
 

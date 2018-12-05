@@ -169,5 +169,39 @@ namespace Payabbhi
 			var response = httpClient.Request(requestUrl, HttpMethod.Get, options);
 			return Converter<PayabbhiList<Refund>>.ConvertFromJson(response);
 		}
+
+		/// <summary>
+		/// Create transfers against a payment
+		/// </summary>
+		/// <returns>List of transfers created for the payment</returns>
+		/// <param name="options">Additional Options</param>
+		public PayabbhiList<Transfer> Transfer(IDictionary<string, object> options = null)
+		{
+			string id = this.Id;
+			if (String.IsNullOrEmpty(id))
+			{
+				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
+			}
+			string requestUrl = string.Format("{0}/{1}/transfers", relativeUrl, id);
+			var response = httpClient.Request(requestUrl, HttpMethod.Post, options);
+			return Converter<PayabbhiList<Transfer>>.ConvertFromJson(response);
+		}
+
+		/// <summary>
+		/// List all transfers for a payment
+		/// </summary>
+		/// <returns>List of transfers for the payment</returns>
+		/// <param name="options">Additional Options</param>
+		public PayabbhiList<Transfer> Transfers(IDictionary<string, object> options = null)
+		{
+			string id = this.Id;
+			if (String.IsNullOrEmpty(id))
+			{
+				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
+			}
+			string requestUrl = string.Format("{0}/{1}/transfers", relativeUrl, id);
+			var response = httpClient.Request(requestUrl, HttpMethod.Get, options);
+			return Converter<PayabbhiList<Transfer>>.ConvertFromJson(response);
+		}
 	}
 }

@@ -3,6 +3,8 @@ namespace Payabbhi
 	public enum HttpMethod
 	{
 		Get,
-		Post
+		Post,
+		Put,
+		Delete
 	}
 }

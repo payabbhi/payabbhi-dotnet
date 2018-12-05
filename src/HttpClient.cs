@@ -25,7 +25,7 @@ namespace Payabbhi
 				queryString = MakeQueryString(options);
 				relativeUrl = relativeUrl + "?" + queryString;
 			}
-			else if (method == HttpMethod.Post)
+			else if (method == HttpMethod.Post || method == HttpMethod.Put)
 			{
 				postData = JsonConvert.SerializeObject(options);
 			}
@@ -50,7 +50,7 @@ namespace Payabbhi
 		{
 			IHttpWebRequest request = createRequest(relativeUrl, method);
 
-			if (method == HttpMethod.Post)
+			if (method == HttpMethod.Post || method == HttpMethod.Put)
 			{
 				var dataBytes = Encoding.UTF8.GetBytes(data);
 
