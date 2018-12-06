@@ -1,0 +1,21 @@
+{
+    "id": "dummy_subscription_id",
+    "object": "subscription",
+    "plan_id": "plan_tuOWN0Sc0uMB4s8E",
+    "customer_id": "cust_2WmsQoSRZMWWkcZg",
+    "billing_method": "automatic",
+    "quantity": 1,
+    "customer_notification_by": "merchant",
+    "billing_cycle_count": 5,
+    "paid_count": 0,
+    "cancel_at_period_end": false,
+    "due_by_days": 0,
+    "trial_end_at": 1539007999,
+    "status": "active",
+    "current_start_at": 1539007999,
+    "current_end_at": 1544278399,
+    "ended_at": 0,
+    "cancelled_at": 1539008085,
+    "created_at": 1539008001,
+    "notes": null
+}

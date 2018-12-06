@@ -2,6 +2,10 @@
 
 Changelog for payabbhi-dotnet.
 
+## [1.0.2] - 2018-12-06
+### Added
+-  Support for Product, Plan, Customer, Subscription, Invoice Item, Invoice, Transfer, Event APIs
+
 ## [1.0.1] - 2018-11-16
 ### Added
 - Support for Webhook signature verification

@@ -166,5 +166,86 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
 			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
 		}
+
+		[Test]
+		public void TestCreateTransfersAgainstPayment()
+		{
+			string filepath = "dummy_payment.json";
+			string url = string.Format("{0}/{1}", paymentURL, "pay_W2FmbqANt09epUOz");
+			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Payment payment = client.Payment.Retrieve("pay_W2FmbqANt09epUOz");
+			string expectedJsonString = Helper.GetJsonString(filepath);
+			Helper.AssertPayment(payment, expectedJsonString);
+
+			string create_url = string.Format("{0}/transfers", url);
+			string filepath2 = "dummy_transfer_collection.json";
+			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, create_url));
+			Dictionary<string, object> transferItem1 = new Dictionary<string, object>() {
+	      {"amount", 20 },
+	      {"currency", "INR" },
+	      {"description", "Tranfer 1" },
+	      {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+      };
+      Dictionary<string, object> transferItem2 = new Dictionary<string, object>()
+      {
+          {"amount", 30 },
+          {"currency", "INR" },
+          {"description", "Tranfer 2" },
+          {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+      };
+			Dictionary<string, object> transferItem3 = new Dictionary<string, object>()
+      {
+          {"amount", 50 },
+          {"currency", "INR" },
+          {"description", "Tranfer 3" },
+          {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+      };
+      Dictionary<string, object>[] transferArr = { transferItem1, transferItem2, transferItem3 };
+			var transfers = payment.Transfer(new Dictionary<string, object>() {
+      	{"transfers", transferArr }
+      });
+			expectedJsonString = Helper.GetJsonString(filepath2);
+			Helper.AssertListOfTransfers(transfers, expectedJsonString);
+		}
+
+		[Test]
+		public void TestEmptyPaymentCreatesTransfers()
+		{
+			string url = string.Format("{0}/transfers", paymentURL);
+			string filepath = "dummy_transfer_collection.json";
+			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Transfer());
+			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
+			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+		}
+
+		[Test]
+		public void TestListTransfersForPayment()
+		{
+			string filepath = "dummy_payment.json";
+			string url = string.Format("{0}/{1}", paymentURL, "pay_W2FmbqANt09epUOz");
+			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Payment payment = client.Payment.Retrieve("pay_W2FmbqANt09epUOz");
+			string expectedJsonString = Helper.GetJsonString(filepath);
+			Helper.AssertPayment(payment, expectedJsonString);
+
+			string list_url = string.Format("{0}/transfers", url);
+			string filepath2 = "dummy_transfer_collection.json";
+			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, list_url));
+			var transfers = payment.Transfers();
+			expectedJsonString = Helper.GetJsonString(filepath2);
+			Helper.AssertListOfTransfers(transfers, expectedJsonString);
+		}
+
+		[Test]
+		public void TestEmptyPaymentListsTransfers()
+		{
+			string url = string.Format("{0}/transfers", paymentURL);
+			string filepath = "dummy_transfer_collection.json";
+			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Transfers());
+			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
+			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+		}
 	}
 }
