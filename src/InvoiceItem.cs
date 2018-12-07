@@ -13,10 +13,10 @@ namespace Payabbhi
 		[JsonProperty("object")]
 		public string Object { get; set; }
 
-    [JsonProperty("name")]
+		[JsonProperty("name")]
 		public string Name { get; set; }
 
-    [JsonProperty("description")]
+		[JsonProperty("description")]
 		public string Description { get; set; }
 
 		[JsonProperty("amount")]
@@ -28,13 +28,13 @@ namespace Payabbhi
 		[JsonProperty("customer_id")]
 		public string CustomerId { get; set; }
 
-    [JsonProperty("invoice_id")]
+		[JsonProperty("invoice_id")]
 		public string InvoiceId { get; set; }
 
-    [JsonProperty("subscription_id")]
+		[JsonProperty("subscription_id")]
 		public string SubscriptionId { get; set; }
 
-    [JsonProperty("quantity")]
+		[JsonProperty("quantity")]
 		public int Quantity { get; set; }
 
 		[JsonProperty("notes")]
@@ -51,7 +51,7 @@ namespace Payabbhi
 			httpClient = new HttpClient();
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Retrieves an invoice item object using invoice item id
 		/// </summary>
 		/// <returns>InvoiceItem Object</returns>
@@ -74,7 +74,7 @@ namespace Payabbhi
 			return Converter<PayabbhiList<InvoiceItem>>.ConvertFromJson(response);
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Create an invoice item
 		/// </summary>
 		/// <returns>InvoiceItem object</returns>
@@ -91,12 +91,12 @@ namespace Payabbhi
 		/// <returns>InvoiceItem object</returns>
 		public InvoiceItem Delete()
 		{
-      string id = this.Id;
+			string id = this.Id;
 			if (String.IsNullOrEmpty(id))
 			{
 				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
 			}
-      string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
+			string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Delete, null);
 			return Converter<InvoiceItem>.ConvertFromJson(response);
 		}

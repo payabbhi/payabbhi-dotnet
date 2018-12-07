@@ -168,16 +168,16 @@ namespace UnitTesting.Payabbhi.Tests
 				Assert.AreEqual(product.PayabbhiResponse.ResponseJson, expectedOutput);
 			}
 			Assert.AreEqual(product.Id, (string)token.SelectToken("id"));
-      Assert.AreEqual(product.Object, (string)token.SelectToken("object"));
-      Assert.AreEqual(product.Name, (string)token.SelectToken("name"));
-      Assert.AreEqual(product.Type, (string)token.SelectToken("type"));
-      Assert.AreEqual(product.UnitLabel, (string)token.SelectToken("unit_label"));
-      if (product.Notes != null)
-      {
-          Assert.AreEqual(product.Notes, (object)token.SelectToken("notes"));
-      }
-      Assert.AreEqual(product.CreatedAt, (int)token.SelectToken("created_at"));
-  	}
+			Assert.AreEqual(product.Object, (string)token.SelectToken("object"));
+			Assert.AreEqual(product.Name, (string)token.SelectToken("name"));
+			Assert.AreEqual(product.Type, (string)token.SelectToken("type"));
+			Assert.AreEqual(product.UnitLabel, (string)token.SelectToken("unit_label"));
+			if (product.Notes != null)
+			{
+				Assert.AreEqual(product.Notes, (object)token.SelectToken("notes"));
+			}
+			Assert.AreEqual(product.CreatedAt, (int)token.SelectToken("created_at"));
+		}
 
 		public static void AssertPlan(Plan plan, string expectedOutput, bool validateJson = true)
 		{
@@ -188,19 +188,19 @@ namespace UnitTesting.Payabbhi.Tests
 				Assert.AreEqual(plan.PayabbhiResponse.ResponseJson, expectedOutput);
 			}
 			Assert.AreEqual(plan.Id, (string)token.SelectToken("id"));
-      Assert.AreEqual(plan.Object, (string)token.SelectToken("object"));
+			Assert.AreEqual(plan.Object, (string)token.SelectToken("object"));
 			Assert.AreEqual(plan.ProductId, (string)token.SelectToken("product_id"));
-      Assert.AreEqual(plan.Name, (string)token.SelectToken("name"));
+			Assert.AreEqual(plan.Name, (string)token.SelectToken("name"));
 			Assert.AreEqual(plan.Amount, (int)token.SelectToken("amount"));
-      Assert.AreEqual(plan.Currency, (string)token.SelectToken("currency"));
+			Assert.AreEqual(plan.Currency, (string)token.SelectToken("currency"));
 			Assert.AreEqual(plan.Frequency, (int)token.SelectToken("frequency"));
-      Assert.AreEqual(plan.Interval, (string)token.SelectToken("interval"));
-      if (plan.Notes != null)
-      {
-          Assert.AreEqual(plan.Notes, (object)token.SelectToken("notes"));
-      }
-      Assert.AreEqual(plan.CreatedAt, (int)token.SelectToken("created_at"));
-  	}
+			Assert.AreEqual(plan.Interval, (string)token.SelectToken("interval"));
+			if (plan.Notes != null)
+			{
+				Assert.AreEqual(plan.Notes, (object)token.SelectToken("notes"));
+			}
+			Assert.AreEqual(plan.CreatedAt, (int)token.SelectToken("created_at"));
+		}
 
 		public static void AssertListOfRefunds(PayabbhiList<Refund> refundList, string expectedOutput)
 		{
@@ -306,18 +306,18 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(customer.ContactNo, (string)token.SelectToken("contact_no"));
 			Assert.AreEqual(customer.Email, (string)token.SelectToken("email"));
 			if (customer.BillingAddress != null)
-      {
-          Assert.AreEqual(customer.BillingAddress, (object)token.SelectToken("billing_address"));
-      }
+			{
+				Assert.AreEqual(customer.BillingAddress, (object)token.SelectToken("billing_address"));
+			}
 			if (customer.ShippingAddress != null)
-      {
-          Assert.AreEqual(customer.ShippingAddress, (object)token.SelectToken("shipping_address"));
-      }
+			{
+				Assert.AreEqual(customer.ShippingAddress, (object)token.SelectToken("shipping_address"));
+			}
 			Assert.AreEqual(customer.Gstin, (string)token.SelectToken("gstin"));
 			if (customer.Notes != null)
-      {
-          Assert.AreEqual(customer.Notes, (object)token.SelectToken("notes"));
-      }
+			{
+				Assert.AreEqual(customer.Notes, (object)token.SelectToken("notes"));
+			}
 			Assert.AreEqual(customer.CreatedAt, (int)token.SelectToken("created_at"));
 			AssertListOfSubscriptions(customer.Subscriptions, token.SelectToken("subscriptions").ToString(Formatting.None));
 		}
@@ -349,23 +349,23 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(subscription.Object, (string)token.SelectToken("object"));
 			Assert.AreEqual(subscription.PlanId, (string)token.SelectToken("plan_id"));
 			Assert.AreEqual(subscription.CustomerId, (string)token.SelectToken("customer_id"));
-      Assert.AreEqual(subscription.BillingMethod, (string)token.SelectToken("billing_method"));
-      Assert.AreEqual(subscription.Quantity, (int)token.SelectToken("quantity"));
-      Assert.AreEqual(subscription.CustomerNotificationBy, (string)token.SelectToken("customer_notification_by"));
-      Assert.AreEqual(subscription.BillingCycleCount, (int)token.SelectToken("billing_cycle_count"));
-      Assert.AreEqual(subscription.PaidCount, (int)token.SelectToken("paid_count"));
-      Assert.AreEqual(subscription.CancelAtPeriodEnd, (bool)token.SelectToken("cancel_at_period_end"));
-      Assert.AreEqual(subscription.DueByDays, (int)token.SelectToken("due_by_days"));
-      Assert.AreEqual(subscription.TrialEndAt, (int)token.SelectToken("trial_end_at"));
-      Assert.AreEqual(subscription.Status, (string)token.SelectToken("status"));
-      Assert.AreEqual(subscription.CurrentStartAt, (int)token.SelectToken("current_start_at"));
-      Assert.AreEqual(subscription.CurrentEndAt, (int)token.SelectToken("current_end_at"));
-      Assert.AreEqual(subscription.EndedAt, (int)token.SelectToken("ended_at"));
-      Assert.AreEqual(subscription.CancelledAt, (int)token.SelectToken("cancelled_at"));
+			Assert.AreEqual(subscription.BillingMethod, (string)token.SelectToken("billing_method"));
+			Assert.AreEqual(subscription.Quantity, (int)token.SelectToken("quantity"));
+			Assert.AreEqual(subscription.CustomerNotificationBy, (string)token.SelectToken("customer_notification_by"));
+			Assert.AreEqual(subscription.BillingCycleCount, (int)token.SelectToken("billing_cycle_count"));
+			Assert.AreEqual(subscription.PaidCount, (int)token.SelectToken("paid_count"));
+			Assert.AreEqual(subscription.CancelAtPeriodEnd, (bool)token.SelectToken("cancel_at_period_end"));
+			Assert.AreEqual(subscription.DueByDays, (int)token.SelectToken("due_by_days"));
+			Assert.AreEqual(subscription.TrialEndAt, (int)token.SelectToken("trial_end_at"));
+			Assert.AreEqual(subscription.Status, (string)token.SelectToken("status"));
+			Assert.AreEqual(subscription.CurrentStartAt, (int)token.SelectToken("current_start_at"));
+			Assert.AreEqual(subscription.CurrentEndAt, (int)token.SelectToken("current_end_at"));
+			Assert.AreEqual(subscription.EndedAt, (int)token.SelectToken("ended_at"));
+			Assert.AreEqual(subscription.CancelledAt, (int)token.SelectToken("cancelled_at"));
 			if (subscription.Notes != null)
-      {
-        Assert.AreEqual(subscription.Notes, (object)token.SelectToken("notes"));
-      }
+			{
+				Assert.AreEqual(subscription.Notes, (object)token.SelectToken("notes"));
+			}
 			Assert.AreEqual(subscription.CreatedAt, (int)token.SelectToken("created_at"));
 		}
 
@@ -396,16 +396,16 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(invoiceItem.Object, (string)token.SelectToken("object"));
 			Assert.AreEqual(invoiceItem.Name, (string)token.SelectToken("name"));
 			Assert.AreEqual(invoiceItem.Description, (string)token.SelectToken("description"));
-      Assert.AreEqual(invoiceItem.Amount, (int)token.SelectToken("amount"));
-      Assert.AreEqual(invoiceItem.Currency, (string)token.SelectToken("currency"));
-      Assert.AreEqual(invoiceItem.CustomerId, (string)token.SelectToken("customer_id"));
+			Assert.AreEqual(invoiceItem.Amount, (int)token.SelectToken("amount"));
+			Assert.AreEqual(invoiceItem.Currency, (string)token.SelectToken("currency"));
+			Assert.AreEqual(invoiceItem.CustomerId, (string)token.SelectToken("customer_id"));
 			Assert.AreEqual(invoiceItem.InvoiceId, (string)token.SelectToken("invoice_id"));
 			Assert.AreEqual(invoiceItem.SubscriptionId, (string)token.SelectToken("subscription_id"));
 			Assert.AreEqual(invoiceItem.Quantity, (int)token.SelectToken("quantity"));
 			if (invoiceItem.Notes != null)
-      {
-        Assert.AreEqual(invoiceItem.Notes, (object)token.SelectToken("notes"));
-      }
+			{
+				Assert.AreEqual(invoiceItem.Notes, (object)token.SelectToken("notes"));
+			}
 			Assert.AreEqual(invoiceItem.CreatedAt, (int)token.SelectToken("created_at"));
 		}
 
@@ -437,8 +437,8 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(invoice.Amount, (int)token.SelectToken("amount"));
 			Assert.AreEqual(invoice.BillingMethod, (string)token.SelectToken("billing_method"));
 			Assert.AreEqual(invoice.CustomerId, (string)token.SelectToken("customer_id"));
-      Assert.AreEqual(invoice.Currency, (string)token.SelectToken("currency"));
-      Assert.AreEqual(invoice.Description, (string)token.SelectToken("description"));
+			Assert.AreEqual(invoice.Currency, (string)token.SelectToken("currency"));
+			Assert.AreEqual(invoice.Description, (string)token.SelectToken("description"));
 			Assert.AreEqual(invoice.DueDate, (int)token.SelectToken("due_date"));
 			Assert.AreEqual(invoice.NotifyBy, (string)token.SelectToken("notify_by"));
 			Assert.AreEqual(invoice.PaymentAttempt, (int)token.SelectToken("payment_attempt"));
@@ -447,9 +447,9 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(invoice.SubscriptionId, (string)token.SelectToken("subscription_id"));
 			Assert.AreEqual(invoice.Url, (string)token.SelectToken("url"));
 			if (invoice.Notes != null)
-      {
-        Assert.AreEqual(invoice.Notes, (object)token.SelectToken("notes"));
-      }
+			{
+				Assert.AreEqual(invoice.Notes, (object)token.SelectToken("notes"));
+			}
 			Assert.AreEqual(invoice.CreatedAt, (int)token.SelectToken("created_at"));
 		}
 
@@ -482,13 +482,13 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(transfer.SourceId, (string)token.SelectToken("source_id"));
 			Assert.AreEqual(transfer.RecipientId, (string)token.SelectToken("recipient_id"));
 			Assert.AreEqual(transfer.Amount, (int)token.SelectToken("amount"));
-      Assert.AreEqual(transfer.Currency, (string)token.SelectToken("currency"));
+			Assert.AreEqual(transfer.Currency, (string)token.SelectToken("currency"));
 			Assert.AreEqual(transfer.Fees, (int)token.SelectToken("fees"));
 			Assert.AreEqual(transfer.Gst, (int)token.SelectToken("gst"));
 			if (transfer.Notes != null)
-      {
-        Assert.AreEqual(transfer.Notes, (object)token.SelectToken("notes"));
-      }
+			{
+				Assert.AreEqual(transfer.Notes, (object)token.SelectToken("notes"));
+			}
 			Assert.AreEqual(transfer.CreatedAt, (int)token.SelectToken("created_at"));
 		}
 
@@ -520,9 +520,9 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.AreEqual(evt.Type, (string)token.SelectToken("type"));
 			Assert.AreEqual(evt.Environment, (string)token.SelectToken("environment"));
 			if (evt.Data != null)
-      {
-        Assert.AreEqual(evt.Data, (object)token.SelectToken("data"));
-      }
+			{
+				Assert.AreEqual(evt.Data, (object)token.SelectToken("data"));
+			}
 			Assert.AreEqual(evt.CreatedAt, (int)token.SelectToken("created_at"));
 		}
 

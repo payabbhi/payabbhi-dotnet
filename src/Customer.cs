@@ -13,13 +13,13 @@ namespace Payabbhi
 		[JsonProperty("object")]
 		public string Object { get; set; }
 
-    [JsonProperty("email")]
+		[JsonProperty("email")]
 		public string Email { get; set; }
 
-    [JsonProperty("name")]
+		[JsonProperty("name")]
 		public string Name { get; set; }
 
-    [JsonProperty("contact_no")]
+		[JsonProperty("contact_no")]
 		public string ContactNo { get; set; }
 
 		[JsonProperty("billing_address")]
@@ -71,7 +71,7 @@ namespace Payabbhi
 			return Converter<PayabbhiList<Customer>>.ConvertFromJson(response);
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Create a customer
 		/// </summary>
 		/// <returns>Customer object</returns>
@@ -94,7 +94,7 @@ namespace Payabbhi
 			{
 				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
 			}
-      string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
+			string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Put, options);
 			return Converter<Customer>.ConvertFromJson(response);
 		}

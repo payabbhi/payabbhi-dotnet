@@ -181,29 +181,29 @@ namespace UnitTesting.Payabbhi.Tests
 			string filepath2 = "dummy_transfer_collection.json";
 			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, create_url));
 			Dictionary<string, object> transferItem1 = new Dictionary<string, object>() {
-	      {"amount", 20 },
-	      {"currency", "INR" },
-	      {"description", "Tranfer 1" },
-	      {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
-      };
-      Dictionary<string, object> transferItem2 = new Dictionary<string, object>()
-      {
-          {"amount", 30 },
-          {"currency", "INR" },
-          {"description", "Tranfer 2" },
-          {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
-      };
+			  {"amount", 20 },
+			  {"currency", "INR" },
+			  {"description", "Tranfer 1" },
+			  {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+		  };
+			Dictionary<string, object> transferItem2 = new Dictionary<string, object>()
+		  {
+			  {"amount", 30 },
+			  {"currency", "INR" },
+			  {"description", "Tranfer 2" },
+			  {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+		  };
 			Dictionary<string, object> transferItem3 = new Dictionary<string, object>()
-      {
-          {"amount", 50 },
-          {"currency", "INR" },
-          {"description", "Tranfer 3" },
-          {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
-      };
-      Dictionary<string, object>[] transferArr = { transferItem1, transferItem2, transferItem3 };
+		  {
+			  {"amount", 50 },
+			  {"currency", "INR" },
+			  {"description", "Tranfer 3" },
+			  {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+		  };
+			Dictionary<string, object>[] transferArr = { transferItem1, transferItem2, transferItem3 };
 			var transfers = payment.Transfer(new Dictionary<string, object>() {
-      	{"transfers", transferArr }
-      });
+				{"transfers", transferArr }
+		  });
 			expectedJsonString = Helper.GetJsonString(filepath2);
 			Helper.AssertListOfTransfers(transfers, expectedJsonString);
 		}

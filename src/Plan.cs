@@ -13,20 +13,20 @@ namespace Payabbhi
 		[JsonProperty("object")]
 		public string Object { get; set; }
 
-    [JsonProperty("product_id")]
+		[JsonProperty("product_id")]
 		public string ProductId { get; set; }
 
-    [JsonProperty("name")]
+		[JsonProperty("name")]
 		public string Name { get; set; }
 
 		[JsonProperty("amount")]
 		public int Amount { get; set; }
 
-    [JsonProperty("currency")]
+		[JsonProperty("currency")]
 		public string Currency { get; set; }
 
-    [JsonProperty("frequency")]
-    public int Frequency { get; set; }
+		[JsonProperty("frequency")]
+		public int Frequency { get; set; }
 
 		[JsonProperty("interval")]
 		public string Interval { get; set; }
@@ -68,7 +68,7 @@ namespace Payabbhi
 			return Converter<PayabbhiList<Plan>>.ConvertFromJson(response);
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Create a plan
 		/// </summary>
 		/// <returns>Plan object</returns>

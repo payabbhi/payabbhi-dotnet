@@ -13,13 +13,13 @@ namespace Payabbhi
 		[JsonProperty("object")]
 		public string Object { get; set; }
 
-    [JsonProperty("plan_id")]
+		[JsonProperty("plan_id")]
 		public string PlanId { get; set; }
 
-    [JsonProperty("customer_id")]
+		[JsonProperty("customer_id")]
 		public string CustomerId { get; set; }
 
-    [JsonProperty("billing_method")]
+		[JsonProperty("billing_method")]
 		public string BillingMethod { get; set; }
 
 		[JsonProperty("quantity")]
@@ -31,31 +31,31 @@ namespace Payabbhi
 		[JsonProperty("billing_cycle_count")]
 		public int BillingCycleCount { get; set; }
 
-    [JsonProperty("paid_count")]
+		[JsonProperty("paid_count")]
 		public int PaidCount { get; set; }
 
-    [JsonProperty("cancel_at_period_end")]
+		[JsonProperty("cancel_at_period_end")]
 		public bool CancelAtPeriodEnd { get; set; }
 
-    [JsonProperty("due_by_days")]
+		[JsonProperty("due_by_days")]
 		public int DueByDays { get; set; }
 
-    [JsonProperty("trial_end_at")]
-    public int TrialEndAt { get; set; }
+		[JsonProperty("trial_end_at")]
+		public int TrialEndAt { get; set; }
 
-    [JsonProperty("status")]
+		[JsonProperty("status")]
 		public string Status { get; set; }
 
-    [JsonProperty("current_start_at")]
+		[JsonProperty("current_start_at")]
 		public int CurrentStartAt { get; set; }
 
-    [JsonProperty("current_end_at")]
+		[JsonProperty("current_end_at")]
 		public int CurrentEndAt { get; set; }
 
-    [JsonProperty("ended_at")]
+		[JsonProperty("ended_at")]
 		public int EndedAt { get; set; }
 
-    [JsonProperty("cancelled_at")]
+		[JsonProperty("cancelled_at")]
 		public int CancelledAt { get; set; }
 
 		[JsonProperty("notes")]
@@ -72,7 +72,7 @@ namespace Payabbhi
 			httpClient = new HttpClient();
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Retrieves a subscription object using subscription id
 		/// </summary>
 		/// <returns>Subscription Object</returns>
@@ -95,7 +95,7 @@ namespace Payabbhi
 			return Converter<PayabbhiList<Subscription>>.ConvertFromJson(response);
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Create a subscription
 		/// </summary>
 		/// <returns>Subscription object</returns>
@@ -117,7 +117,7 @@ namespace Payabbhi
 			{
 				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
 			}
-      string requestUrl = string.Format("{0}/{1}/cancel", relativeUrl, id);
+			string requestUrl = string.Format("{0}/{1}/cancel", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Post, null);
 			return Converter<Subscription>.ConvertFromJson(response);
 		}

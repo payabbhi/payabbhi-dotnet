@@ -16,7 +16,7 @@ namespace Payabbhi
 		[JsonProperty("amount")]
 		public int Amount { get; set; }
 
-    [JsonProperty("billing_method")]
+		[JsonProperty("billing_method")]
 		public string BillingMethod { get; set; }
 
 		[JsonProperty("customer_id")]
@@ -25,7 +25,7 @@ namespace Payabbhi
 		[JsonProperty("currency")]
 		public string Currency { get; set; }
 
-    [JsonProperty("description")]
+		[JsonProperty("description")]
 		public string Description { get; set; }
 
 		[JsonProperty("due_date")]
@@ -63,7 +63,7 @@ namespace Payabbhi
 			httpClient = new HttpClient();
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Retrieves an invoice object using invoice id
 		/// </summary>
 		/// <returns>Invoice Object</returns>
@@ -86,7 +86,7 @@ namespace Payabbhi
 			return Converter<PayabbhiList<Invoice>>.ConvertFromJson(response);
 		}
 
-    /// <summary>
+		/// <summary>
 		/// Create an invoice
 		/// </summary>
 		/// <returns>Invoice object</returns>
@@ -108,7 +108,7 @@ namespace Payabbhi
 			{
 				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
 			}
-      string requestUrl = string.Format("{0}/{1}/void", relativeUrl, id);
+			string requestUrl = string.Format("{0}/{1}/void", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Post, null);
 			return Converter<Invoice>.ConvertFromJson(response);
 		}

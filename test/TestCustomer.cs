@@ -53,7 +53,7 @@ namespace UnitTesting.Payabbhi.Tests
 			Helper.AssertCustomer(customer, expectedJsonString);
 		}
 
-    [Test]
+		[Test]
 		public void TestCreateCustomer()
 		{
 			string filepath = "dummy_customer.json";
@@ -81,7 +81,7 @@ namespace UnitTesting.Payabbhi.Tests
 			customer = customer.Update(new Dictionary<string, object>() {
 				{ "email", "a@b.com" },
 				{ "contact_no", "8433894351" },
-      });
+	  });
 			expectedJsonString = Helper.GetJsonString(filepath2);
 			Helper.AssertCustomer(customer, expectedJsonString);
 		}
@@ -94,7 +94,7 @@ namespace UnitTesting.Payabbhi.Tests
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Customer.Update(new Dictionary<string, object>() {
 				{ "email", "a@b.com" },
 				{ "contact_no", "8433894351" },
-      }));
+	  }));
 			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
 			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
 		}

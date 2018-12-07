@@ -53,7 +53,7 @@ namespace UnitTesting.Payabbhi.Tests
 			Helper.AssertProduct(product, expectedJsonString);
 		}
 
-    [Test]
+		[Test]
 		public void TestCreateProduct()
 		{
 			string filepath = "dummy_product.json";
@@ -62,8 +62,8 @@ namespace UnitTesting.Payabbhi.Tests
 			options.Add("name", "Books");
 			options.Add("unit_label", "MB");
 			options.Add("notes", new Dictionary<string, object>(){
-        { "genre", "comedy" }
-      });
+		{ "genre", "comedy" }
+	  });
 			Product product = client.Product.Create(options);
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertProduct(product, expectedJsonString);
