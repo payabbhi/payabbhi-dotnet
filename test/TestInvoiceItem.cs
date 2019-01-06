@@ -1,63 +1,56 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Payabbhi;
 using Payabbhi.Error;
 
 namespace UnitTesting.Payabbhi.Tests
 {
-	[TestFixture]
 	public class TestInvoiceItem
 	{
 		const string ACCESSID = "access_id";
 		const string SECRETKEY = "secret_key";
 		const string INVOICEITEMID = "dummy_invoice_item_id";
 		readonly string invoiceItemURL = "/api/v1/invoiceitems";
-		Client client;
 
-		public void Init(string accessID, string secretKey, IHttpWebRequestFactory httpFactory)
-		{
-			client = new Client(accessID, secretKey, httpFactory);
-		}
-
-		[Test]
+		[Fact]
 		public void TestGetAllInvoiceItems()
 		{
 			string filepath = "dummy_invoice_item_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceItemURL));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceItemURL));
 			var result = client.InvoiceItem.All();
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertListOfInvoiceItems(result, expectedJsonString);
+			Helper.AssertEntity(result, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetAllInvoiceItemsWithFilters()
 		{
 			string filepath = "dummy_invoice_item_collection.json";
 			Dictionary<string, object> options = new Dictionary<string, object>();
 			options.Add("count", 2);
 			string url = string.Format("{0}?count={1}", invoiceItemURL, options["count"]);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			var result = client.InvoiceItem.All(options);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertListOfInvoiceItems(result, expectedJsonString);
+			Helper.AssertEntity(result, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetInvoiceItemById()
 		{
 			string filepath = "dummy_invoice_item.json";
 			string url = string.Format("{0}/{1}", invoiceItemURL, INVOICEITEMID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			InvoiceItem invoiceItem = client.InvoiceItem.Retrieve(INVOICEITEMID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertInvoiceItem(invoiceItem, expectedJsonString);
+			Helper.AssertEntity(invoiceItem, expectedJsonString);
 		}
 
-		[Test]
+    [Fact]
 		public void TestCreateInvoiceItem()
 		{
 			string filepath = "dummy_invoice_item.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceItemURL));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceItemURL));
 			IDictionary<string, object> options = new Dictionary<string, object>();
 			options.Add("name", "Line Item");
 			options.Add("customer_id", "cust_2WmsQoSRZMWWkcZg");
@@ -66,34 +59,34 @@ namespace UnitTesting.Payabbhi.Tests
 			options.Add("currency", "INR");
 			InvoiceItem invoiceItem = client.InvoiceItem.Create(options);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertInvoiceItem(invoiceItem, expectedJsonString);
+			Helper.AssertEntity(invoiceItem, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestDeleteInvoiceItem()
 		{
 			string filepath = "dummy_invoice_item.json";
 			string url = string.Format("{0}/{1}", invoiceItemURL, INVOICEITEMID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			InvoiceItem invoiceItem = client.InvoiceItem.Retrieve(INVOICEITEMID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertInvoiceItem(invoiceItem, expectedJsonString);
+			Helper.AssertEntity(invoiceItem, expectedJsonString);
 
 			string delete_url = string.Format("{0}/delete", url);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, delete_url));
+			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, delete_url));
 			invoiceItem = invoiceItem.Delete();
 			expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertInvoiceItem(invoiceItem, expectedJsonString);
+			Helper.AssertEntity(invoiceItem, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyDeleteInvoiceItem()
 		{
 			string filepath = "dummy_invoice_item.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceItemURL));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceItemURL));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.InvoiceItem.Delete());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+			Assert.Equal(ex.Message, "message: Object Id not set\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
 	}
 }

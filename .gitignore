@@ -18,3 +18,5 @@ tools/**
 .dotnet/
 .vs/
 */Properties/AssemblyInfo.cs
+result.xml
+coverageReports/*

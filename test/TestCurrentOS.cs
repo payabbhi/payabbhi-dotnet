@@ -1,67 +1,66 @@
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 using Payabbhi;
 
 namespace UnitTesting.Payabbhi.Tests
 {
-	[TestFixture]
 	public class TestCurrentOS
 	{
-		[Test]
+		[Fact]
 		public void TestMacOS64bit()
 		{
 			var osHelper = Substitute.For<OSHelper>();
 			osHelper.ReadProcessOutput("uname", null).Returns("Darwin");
 			osHelper.ReadProcessOutput("sw_vers", "-productVersion").Returns("10.12.6");
 			CurrentOS os = new CurrentOS('/', "Unix 16.7.0.0", true, osHelper);
-			Assert.AreEqual(os.Name, "Darwin MacOS X 10.12.6 64bit");
+			Assert.Equal(os.Name, "Darwin MacOS X 10.12.6 64bit");
 		}
 
-		[Test]
+		[Fact]
 		public void TestMacOS32bit()
 		{
 			var osHelper = Substitute.For<OSHelper>();
 			osHelper.ReadProcessOutput("uname", null).Returns("Darwin");
 			osHelper.ReadProcessOutput("sw_vers", "-productVersion").Returns("10.12.6");
 			CurrentOS os = new CurrentOS('/', "Unix 16.7.0.0", false, osHelper);
-			Assert.AreEqual(os.Name, "Darwin MacOS X 10.12.6 32bit");
+			Assert.Equal(os.Name, "Darwin MacOS X 10.12.6 32bit");
 		}
 
-		[Test]
+		[Fact]
 		public void TestWindowsOS64bit()
 		{
 			var osHelper = Substitute.For<OSHelper>();
 			CurrentOS os = new CurrentOS('\\', "Microsoft Windows NT 10.0.14393.0", true, osHelper);
-			Assert.AreEqual(os.Name, "Windows 10 64bit 10.0.14393.0");
+			Assert.Equal(os.Name, "Windows 10 64bit 10.0.14393.0");
 		}
 
-		[Test]
+		[Fact]
 		public void TestWindowsOS32bit()
 		{
 			var osHelper = Substitute.For<OSHelper>();
 			CurrentOS os = new CurrentOS('\\', "Microsoft Windows NT 10.0.14393.0", false, osHelper);
-			Assert.AreEqual(os.Name, "Windows 10 32bit 10.0.14393.0");
+			Assert.Equal(os.Name, "Windows 10 32bit 10.0.14393.0");
 		}
 
-		[Test]
+		[Fact]
 		public void TestUnixOS()
 		{
 			var osHelper = Substitute.For<OSHelper>();
 			osHelper.ReadProcessOutput("uname", null).Returns("UnixName");
 			CurrentOS os = new CurrentOS('/', "Unix 16.7.0.0", true, osHelper);
-			Assert.AreEqual(os.Name, "Unix");
+			Assert.Equal(os.Name, "Unix");
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyUnixName()
 		{
 			var osHelper = Substitute.For<OSHelper>();
 			osHelper.ReadProcessOutput("uname", null).Returns("");
 			CurrentOS os = new CurrentOS('/', "Unix 16.7.0.0", true, osHelper);
-			Assert.AreEqual(os.Name, "Unknown");
+			Assert.Equal(os.Name, "Unknown");
 		}
 
-		[Test]
+		[Fact]
 		public void TestReadProcessOutput()
 		{
 			OSHelper h = new OSHelper();

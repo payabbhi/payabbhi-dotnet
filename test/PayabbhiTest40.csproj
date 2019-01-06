@@ -28,8 +28,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.7.1\lib\net40\nunit.framework.dll</HintPath>
+    <Reference Include="xunit, Version=1.7.0.1540, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.1.7.0.1540\lib\xunit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="TestClient.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="TestPayabbhiList.cs" />
     <Compile Include="TestPayment.cs" />
     <Compile Include="TestOrder.cs" />
     <Compile Include="TestRefund.cs" />
@@ -59,52 +60,6 @@
     <Compile Include="MockHttpWebRequestFactory.cs" />
     <Compile Include="TestError.cs" />
     <Compile Include="TestCurrentOS.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="testData\dummy_payment_collection.json" />
-    <None Include="testData\dummy_authentication.json" />
-    <None Include="testData\dummy_gateway_error.json" />
-    <None Include="testData\dummy_http_code_502_with_empty_message.json" />
-    <None Include="testData\dummy_invalid_request.json" />
-    <None Include="testData\dummy_order_collection_filters.json" />
-    <None Include="testData\dummy_order_collection.json" />
-    <None Include="testData\dummy_order_payments.json" />
-    <None Include="testData\dummy_order.json" />
-    <None Include="testData\dummy_payment_capture.json" />
-    <None Include="testData\dummy_payment_collection_filters.json" />
-    <None Include="testData\dummy_payment_refund.json" />
-    <None Include="testData\dummy_payment_refunds_collection_filters.json" />
-    <None Include="testData\dummy_payment_refunds.json" />
-    <None Include="testData\dummy_payment_with_emi.json" />
-    <None Include="testData\dummy_payment_with_upi.json" />
-    <None Include="testData\dummy_payment.json" />
-    <None Include="testData\dummy_refund_collection_filters.json" />
-    <None Include="testData\dummy_refund_collection.json" />
-    <None Include="testData\dummy_refund_create.json" />
-    <None Include="testData\dummy_refund.json" />
-    <None Include="testData\dummy_product_collection.json" />
-    <None Include="testData\dummy_product.json" />
-    <None Include="testData\dummy_plan_collection.json" />
-    <None Include="testData\dummy_plan.json" />
-    <None Include="testData\dummy_customer_collection.json" />
-    <None Include="testData\dummy_customer.json" />
-    <None Include="testData\dummy_customer_update.json" />
-    <None Include="testData\dummy_subscription_collection.json" />
-    <None Include="testData\dummy_subscription.json" />
-    <None Include="testData\dummy_subscription_cancel.json" />
-    <None Include="testData\dummy_invoice_item_collection.json" />
-    <None Include="testData\dummy_invoice_item.json" />
-    <None Include="testData\dummy_invoice_collection.json" />
-    <None Include="testData\dummy_invoice.json" />
-    <None Include="testData\dummy_invoice_void.json" />
-    <None Include="testData\dummy_transfer_collection.json" />
-    <None Include="testData\dummy_transfer.json" />
-    <None Include="testData\dummy_event_collection.json" />
-    <None Include="testData\dummy_event.json" />
-    <None Include="testData\dummy_server_error.json" />
-    <None Include="testData\dummy_status_not_found.json" />
-    <None Include="testData\dummy_invalid_data.json" />
-    <None Include="testData\dummy_invalid_json.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="testData\" />

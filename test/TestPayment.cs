@@ -1,35 +1,28 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Payabbhi;
 using Payabbhi.Error;
 
 namespace UnitTesting.Payabbhi.Tests
 {
-	[TestFixture]
 	public class TestPayment
 	{
 		const string ACCESSID = "access_id";
 		const string SECRETKEY = "secret_key";
 		const string PAYMENTID = "dummy_payment_id";
 		readonly string paymentURL = "/api/v1/payments";
-		Client client;
 
-		public void Init(string accessID, string secretKey, IHttpWebRequestFactory httpFactory)
-		{
-			client = new Client(accessID, secretKey, httpFactory);
-		}
-
-		[Test]
+		[Fact]
 		public void TestGetAllPayments()
 		{
 			string filepath = "dummy_payment_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, paymentURL));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, paymentURL));
 			var result = client.Payment.All();
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertListOfPayments(result, expectedJsonString);
+			Helper.AssertEntity(result, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetAllPaymentsWithFilters()
 		{
 			string filepath = "dummy_payment_collection_filters.json";
@@ -37,149 +30,149 @@ namespace UnitTesting.Payabbhi.Tests
 			options.Add("count", 4);
 			options.Add("skip", 2);
 			string url = string.Format("{0}?count={1}&skip={2}", paymentURL, options["count"], options["skip"]);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			var result = client.Payment.All(options);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertListOfPayments(result, expectedJsonString);
+			Helper.AssertEntity(result, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetPaymentById()
 		{
 			string filepath = "dummy_payment.json";
 			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetPaymentWithEMIById()
 		{
 			string filepath = "dummy_payment_with_emi.json";
 			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetPaymentWithUPIById()
 		{
 			string filepath = "dummy_payment_with_upi.json";
 			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestCapturePayment()
 		{
 			string filepath = "dummy_payment.json";
 			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 
 			string capture_url = string.Format("{0}/capture", paymentURL);
 			string filepath2 = "dummy_payment_capture.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, capture_url));
+			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, capture_url));
 			payment = payment.Capture();
 			expectedJsonString = Helper.GetJsonString(filepath2);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyPaymentCapturesPayment()
 		{
 			string capture_url = string.Format("{0}/capture", paymentURL);
 			string filepath = "dummy_payment_capture.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, capture_url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, capture_url));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Capture());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+			Assert.Equal(ex.Message, "message: Object Id not set\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
 
-		[Test]
+		[Fact]
 		public void TestRefundPayment()
 		{
 			string filepath = "dummy_payment.json";
 			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 
 			filepath = "dummy_refund_create.json";
 			IDictionary<string, object> attributes = new Dictionary<string, object>();
 			attributes.Add("amount", 100);
 			url = string.Format("{0}/{1}/refunds", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Refund refund = payment.Refund();
 			expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertRefund(refund, expectedJsonString);
+			Helper.AssertEntity(refund, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyPaymentRefundsPayment()
 		{
 			string filepath = "dummy_refund_create.json";
 			IDictionary<string, object> attributes = new Dictionary<string, object>();
 			attributes.Add("amount", 100);
 			string url = string.Format("{0}/{1}/refunds", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Refund());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+			Assert.Equal(ex.Message, "message: Object Id not set\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
 
-		[Test]
+		[Fact]
 		public void TestPaymentRetrieveRefunds()
 		{
 			string filepath = "dummy_payment.json";
 			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 
 			string retrieve_refunds_url = string.Format("{0}/{1}/refunds", paymentURL, PAYMENTID);
 			string filepath2 = "dummy_payment_refunds.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, url));
+			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, url));
 			var refunds = payment.GetRefunds();
 			expectedJsonString = Helper.GetJsonString(filepath2);
-			Helper.AssertListOfRefunds(refunds, expectedJsonString);
+			Helper.AssertEntity(refunds, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyPaymentRetrievesRefunds()
 		{
 			string filepath = "dummy_payment_refunds.json";
 			string url = string.Format("{0}/{1}/refunds", paymentURL, PAYMENTID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.GetRefunds());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+			Assert.Equal(ex.Message, "message: Object Id not set\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
 
-		[Test]
+		[Fact]
 		public void TestCreateTransfersAgainstPayment()
 		{
 			string filepath = "dummy_payment.json";
 			string url = string.Format("{0}/{1}", paymentURL, "pay_W2FmbqANt09epUOz");
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve("pay_W2FmbqANt09epUOz");
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 
 			string create_url = string.Format("{0}/transfers", url);
 			string filepath2 = "dummy_transfer_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, create_url));
+			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, create_url));
 			Dictionary<string, object> transferItem1 = new Dictionary<string, object>() {
 			  {"amount", 20 },
 			  {"currency", "INR" },
@@ -205,47 +198,47 @@ namespace UnitTesting.Payabbhi.Tests
 				{"transfers", transferArr }
 		  });
 			expectedJsonString = Helper.GetJsonString(filepath2);
-			Helper.AssertListOfTransfers(transfers, expectedJsonString);
+			Helper.AssertEntity(transfers, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyPaymentCreatesTransfers()
 		{
 			string url = string.Format("{0}/transfers", paymentURL);
 			string filepath = "dummy_transfer_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Transfer());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+			Assert.Equal(ex.Message, "message: Object Id not set\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
 
-		[Test]
+		[Fact]
 		public void TestListTransfersForPayment()
 		{
 			string filepath = "dummy_payment.json";
 			string url = string.Format("{0}/{1}", paymentURL, "pay_W2FmbqANt09epUOz");
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			Payment payment = client.Payment.Retrieve("pay_W2FmbqANt09epUOz");
 			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertPayment(payment, expectedJsonString);
+			Helper.AssertEntity(payment, expectedJsonString);
 
 			string list_url = string.Format("{0}/transfers", url);
 			string filepath2 = "dummy_transfer_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, list_url));
+			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, list_url));
 			var transfers = payment.Transfers();
 			expectedJsonString = Helper.GetJsonString(filepath2);
-			Helper.AssertListOfTransfers(transfers, expectedJsonString);
+			Helper.AssertEntity(transfers, expectedJsonString);
 		}
 
-		[Test]
+		[Fact]
 		public void TestEmptyPaymentListsTransfers()
 		{
 			string url = string.Format("{0}/transfers", paymentURL);
 			string filepath = "dummy_transfer_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Transfers());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
+			Assert.Equal(ex.Message, "message: Object Id not set\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
 	}
 }

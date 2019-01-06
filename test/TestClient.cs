@@ -1,37 +1,38 @@
-using NUnit.Framework;
+using Xunit;
 using Payabbhi;
 
 namespace UnitTesting.Payabbhi.Tests
 {
-	[TestFixture]
 	public class TestClient
 	{
-		[Test]
+		[Fact]
 		public void TestGetBaseUrl()
 		{
 			string baseUrl = Client.BaseUrl;
 			string expectedBaseUrl = "https://payabbhi.com";
-			Assert.AreSame(expectedBaseUrl, baseUrl);
+			Assert.Same(expectedBaseUrl, baseUrl);
 		}
 
-		[Test]
+		[Fact]
 		public void TestSetBaseUrl()
 		{
+			string initialBaseUrl = Client.BaseUrl;
 			string setBaseUrl = "https://random.com";
 			Client.BaseUrl = setBaseUrl;
-			Assert.AreSame(Client.BaseUrl, setBaseUrl);
+			Assert.Same(Client.BaseUrl, setBaseUrl);
+			Client.BaseUrl = initialBaseUrl;
 		}
 
-		[Test]
+		[Fact]
 		public void TestSetAppInfo()
 		{
 			string appName = "TestApp";
 			string appVersion = "1.00";
 			string appUrl = "http://www.testapp.com";
 			Client.setAppInfo(appName, appVersion, appUrl);
-			Assert.AreSame(Client.AppInfo["name"], appName);
-			Assert.AreSame(Client.AppInfo["version"], appVersion);
-			Assert.AreSame(Client.AppInfo["url"], appUrl);
+			Assert.Same(Client.AppInfo["name"], appName);
+			Assert.Same(Client.AppInfo["version"], appVersion);
+			Assert.Same(Client.AppInfo["url"], appUrl);
 		}
 	}
 }
