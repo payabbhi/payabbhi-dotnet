@@ -16,7 +16,7 @@ namespace UnitTesting.Payabbhi.Tests
 		public void TestGetAllCustomers()
 		{
 			string filepath = "dummy_customer_collection.json";
-      Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, customerURL));
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, customerURL));
 			var result = client.Customer.All();
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertEntity(result, expectedJsonString);
@@ -46,7 +46,7 @@ namespace UnitTesting.Payabbhi.Tests
 			Helper.AssertEntity(customer, expectedJsonString);
 		}
 
-    [Fact]
+		[Fact]
 		public void TestCreateCustomer()
 		{
 			string filepath = "dummy_customer.json";
@@ -74,7 +74,7 @@ namespace UnitTesting.Payabbhi.Tests
 			customer = customer.Update(new Dictionary<string, object>() {
 				{ "email", "a@b.com" },
 				{ "contact_no", "8433894351" },
-	  });
+			});
 			expectedJsonString = Helper.GetJsonString(filepath2);
 			Helper.AssertEntity(customer, expectedJsonString);
 		}
@@ -86,8 +86,7 @@ namespace UnitTesting.Payabbhi.Tests
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, customerURL));
 			var ex = Assert.Throws<InvalidRequestError>(() => client.Customer.Update(new Dictionary<string, object>() {
 				{ "email", "a@b.com" },
-				{ "contact_no", "8433894351" },
-      }));
+				{ "contact_no", "8433894351" }}));
 			Assert.Equal(ex.Message, "message: Object Id not set\n");
 			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}

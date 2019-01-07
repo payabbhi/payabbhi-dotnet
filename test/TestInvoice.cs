@@ -46,15 +46,15 @@ namespace UnitTesting.Payabbhi.Tests
 			Helper.AssertEntity(invoice, expectedJsonString);
 		}
 
-    [Fact]
+		[Fact]
 		public void TestCreateInvoice()
 		{
 			string filepath = "dummy_invoice.json";
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, invoiceURL));
-			Dictionary<string,string> invItem = new Dictionary<string, string>() {
-      	{"id", "item_I9Gh0wJHJ2tvorbT" }
-      };
-      Dictionary<string, string>[] invItemArr = { invItem };
+			Dictionary<string, string> invItem = new Dictionary<string, string>() {
+				{"id", "item_I9Gh0wJHJ2tvorbT" }
+			};
+			Dictionary<string, string>[] invItemArr = { invItem };
 			IDictionary<string, object> options = new Dictionary<string, object>();
 			options.Add("invoice_no", "INV_90976164");
 			options.Add("customer_id", "cust_2WmsQoSRZMWWkcZg");

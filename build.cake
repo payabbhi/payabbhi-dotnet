@@ -74,36 +74,36 @@ Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-      MSBuild("./PayabbhiNet40.sln", settings =>
-        settings.SetConfiguration(configuration));
-      MSBuild("./PayabbhiNet45.sln", settings =>
-        settings.SetConfiguration(configuration));
+    MSBuild("./PayabbhiNet40.sln", settings =>
+      settings.SetConfiguration(configuration));
+    MSBuild("./PayabbhiNet45.sln", settings =>
+      settings.SetConfiguration(configuration));
 });
 
 Task("Run-Unit-Tests")
     .IsDependentOn("Build")
     .Does(() =>
 {
-  XUnit2(GetFiles("./test/bin/" + configuration + "/PayabbhiTest40.dll"));
-  XUnit2(GetFiles("./test/bin/" + configuration + "/PayabbhiTest45.dll"));
+    XUnit2(GetFiles("./test/bin/" + configuration + "/PayabbhiTest40.dll"));
+    XUnit2(GetFiles("./test/bin/" + configuration + "/PayabbhiTest45.dll"));
 });
 
 Task("Create-Coverage-Report")
     .IsDependentOn("Run-Unit-Tests")
     .Does(() =>
 {
-  OpenCover(tool => {
-    tool.XUnit2("./test/bin/" + configuration + "/PayabbhiTest40.dll",
-      new XUnit2Settings {
-        ShadowCopy = false
-      });
-    },
-    new FilePath("./result.xml"),
-    new OpenCoverSettings()
-      .WithFilter("+[Payabbhi]*")
-      .WithFilter("-[UnitTesting.Payabbhi.Tests]*")
-      .ExcludeByAttribute("*.ExcludeFromCodeCoverageAttribute"));
-    ReportGenerator("./result.xml", "./coverageReports");
+    OpenCover(tool => {
+      tool.XUnit2("./test/bin/" + configuration + "/PayabbhiTest40.dll",
+        new XUnit2Settings {
+          ShadowCopy = false
+        });
+      },
+      new FilePath("./result.xml"),
+      new OpenCoverSettings()
+        .WithFilter("+[Payabbhi]*")
+        .WithFilter("-[UnitTesting.Payabbhi.Tests]*")
+        .ExcludeByAttribute("*.ExcludeFromCodeCoverageAttribute"));
+      ReportGenerator("./result.xml", "./coverageReports");
 });
 
 //////////////////////////////////////////////////////////////////////
