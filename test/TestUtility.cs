@@ -53,13 +53,41 @@ namespace UnitTesting.Payabbhi.Tests
 		}
 
 		[Fact]
-		public void TestVerifyWrongWebhookSignature()
+		public void TestVerifyWrongWebhookSignature1()
 		{
 			Client client = new Client(ACCESSID, SECRETKEY);
 			string filepath = "dummy_event.json";
 			string payload = Helper.GetJsonString(filepath).Replace(System.Environment.NewLine, string.Empty);
 			string secret = "skw_live_jHNxKsDqJusco5hA";
 			string actualSignature = "t=1536577756, v1=random";
+			var ex = Assert.Throws<SignatureVerificationError>(() => client.Utility.VerifyWebhookSignature(payload,actualSignature,secret));
+			Assert.Equal(ex.Message, "message: Invalid signature\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidSignatureError);
+			Assert.Equal(ex.Field, null);
+		}
+
+		[Fact]
+		public void TestVerifyWrongWebhookSignature2()
+		{
+			Client client = new Client(ACCESSID, SECRETKEY);
+			string filepath = "dummy_event.json";
+			string payload = Helper.GetJsonString(filepath).Replace(System.Environment.NewLine, string.Empty);
+			string secret = "skw_live_jHNxKsDqJusco5hA";
+			string actualSignature = "t1=1536577756, v1=random";
+			var ex = Assert.Throws<SignatureVerificationError>(() => client.Utility.VerifyWebhookSignature(payload,actualSignature,secret));
+			Assert.Equal(ex.Message, "message: Invalid signature\n");
+			Assert.Equal(ex.Description, Constants.Messages.InvalidSignatureError);
+			Assert.Equal(ex.Field, null);
+		}
+
+		[Fact]
+		public void TestVerifyWrongWebhookSignature3()
+		{
+			Client client = new Client(ACCESSID, SECRETKEY);
+			string filepath = "dummy_event.json";
+			string payload = Helper.GetJsonString(filepath).Replace(System.Environment.NewLine, string.Empty);
+			string secret = "skw_live_jHNxKsDqJusco5hA";
+			string actualSignature = "t=1536577756, v2=random";
 			var ex = Assert.Throws<SignatureVerificationError>(() => client.Utility.VerifyWebhookSignature(payload,actualSignature,secret));
 			Assert.Equal(ex.Message, "message: Invalid signature\n");
 			Assert.Equal(ex.Description, Constants.Messages.InvalidSignatureError);

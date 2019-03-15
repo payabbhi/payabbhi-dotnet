@@ -28,12 +28,6 @@ namespace Payabbhi
 		[JsonProperty("customer_id")]
 		public string CustomerId { get; set; }
 
-		[JsonProperty("invoice_id")]
-		public string InvoiceId { get; set; }
-
-		[JsonProperty("subscription_id")]
-		public string SubscriptionId { get; set; }
-
 		[JsonProperty("quantity")]
 		public int Quantity { get; set; }
 
@@ -42,6 +36,9 @@ namespace Payabbhi
 
 		[JsonProperty("created_at")]
 		public int CreatedAt { get; set; }
+
+		[JsonProperty("deleted_at")]
+		public int DeletedAt { get; set; }
 
 		readonly HttpClient httpClient;
 		string relativeUrl = "/api/v1/invoiceitems";
@@ -99,6 +96,22 @@ namespace Payabbhi
 			string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Delete, null);
 			return Converter<InvoiceItem>.ConvertFromJson(response);
+		}
+
+		/// <summary>
+		/// List all invoices for an invoice item.
+		/// </summary>
+		/// <returns>List of invoices</returns>
+		public PayabbhiList<Invoice> Invoices()
+		{
+			string id = this.Id;
+			if (String.IsNullOrEmpty(id))
+			{
+				throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
+			}
+			string requestUrl = string.Format("{0}/{1}/invoices", relativeUrl, id);
+			var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
+			return Converter<PayabbhiList<Invoice>>.ConvertFromJson(response);
 		}
 
 	}

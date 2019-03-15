@@ -37,11 +37,14 @@ namespace Payabbhi
 		[JsonProperty("cancel_at_period_end")]
 		public bool CancelAtPeriodEnd { get; set; }
 
-		[JsonProperty("due_by_days")]
-		public int DueByDays { get; set; }
+		[JsonProperty("due_at")]
+		public int DueAt { get; set; }
 
 		[JsonProperty("trial_end_at")]
 		public int TrialEndAt { get; set; }
+
+		[JsonProperty("trial_duration")]
+		public int TrialDuration { get; set; }
 
 		[JsonProperty("status")]
 		public string Status { get; set; }

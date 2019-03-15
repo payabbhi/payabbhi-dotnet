@@ -6,9 +6,8 @@
     "amount": 100,
     "currency": "INR",
     "customer_id": "cust_2WmsQoSRZMWWkcZg",
-    "invoice_id": "invt_LN3GM0Ea7hVcsgr6",
-    "subscription_id": "sub_luQ4QIXzaEIN0g5D",
     "quantity": 1,
     "created_at": 1539008001,
+    "deleted_at": 0,
     "notes": null
 }

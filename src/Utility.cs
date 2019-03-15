@@ -52,10 +52,16 @@ namespace Payabbhi
 							.ToDictionary (sp => sp[0], sp => sp[1]);
 
 			Int32 currentTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+			if ( !signatureMap.ContainsKey("t") || !signatureMap.ContainsKey("v1") )
+			{
+				throw new Error.SignatureVerificationError(Constants.Messages.InvalidSignatureError, null, null);
+			}
+
 			int signatureTimestamp=0;
 			Int32.TryParse(signatureMap["t"], out signatureTimestamp);
 
-			if ( !signatureMap.ContainsKey("t") || !signatureMap.ContainsKey("v1") || currentTimestamp - signatureTimestamp > replayInterval)
+			if (currentTimestamp - signatureTimestamp > replayInterval)
 			{
 				throw new Error.SignatureVerificationError(Constants.Messages.InvalidSignatureError, null, null);
 			}
