@@ -59,6 +59,7 @@
     <Compile Include="..\src\Invoice.cs" />
     <Compile Include="..\src\Transfer.cs" />
     <Compile Include="..\src\Event.cs" />
+    <Compile Include="..\src\Settlement.cs" />
     <Compile Include="..\src\Utility.cs" />
     <Compile Include="..\src\Errors\BaseError.cs" />
     <Compile Include="..\src\Errors\InvalidRequestError.cs" />

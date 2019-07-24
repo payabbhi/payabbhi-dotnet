@@ -21,6 +21,7 @@ namespace Payabbhi
 		Invoice invoice;
 		Transfer transfer;
 		Event evt;
+		Settlement settlement;
 		Utility utility;
 		static IDictionary<string, string> appInfo;
 
@@ -235,6 +236,18 @@ namespace Payabbhi
 					evt = new Event();
 				}
 				return evt;
+			}
+		}
+
+		public Settlement Settlement
+		{
+			get
+			{
+				if (settlement == null)
+				{
+					settlement = new Settlement();
+				}
+				return settlement;
 			}
 		}
 

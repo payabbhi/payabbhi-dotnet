@@ -1,0 +1,11 @@
+{
+    "id": "stl_ertBUMNyLnzGbFKU",
+    "object": "settlement",
+    "amount": 95280,
+    "currency": "INR",
+    "status": "settled",
+    "fees": 4720,
+    "gst": 200,
+    "utr": "utr29zGbdatpqmKZkQU",
+    "settled_at": 1544530263
+  }
