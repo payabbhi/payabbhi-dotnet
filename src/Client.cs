@@ -11,6 +11,7 @@ namespace Payabbhi
 		protected static string version = new AssemblyName(typeof(Payment).Assembly.FullName).Version.ToString(3);
 		protected static IHttpWebRequestFactory httpWebRequestFactory;
 		Payment payment;
+		PaymentLink paymentLink;
 		Order order;
 		Refund refund;
 		Product product;
@@ -116,6 +117,18 @@ namespace Payabbhi
 					payment = new Payment();
 				}
 				return payment;
+			}
+		}
+
+		public PaymentLink PaymentLink
+		{
+			get
+			{
+				if (paymentLink == null)
+				{
+					paymentLink = new PaymentLink();
+				}
+				return paymentLink;
 			}
 		}
 

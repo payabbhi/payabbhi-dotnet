@@ -49,6 +49,7 @@
     <Compile Include="..\src\HttpMethod.cs" />
     <Compile Include="..\src\Client.cs" />
     <Compile Include="..\src\Payment.cs" />
+    <Compile Include="..\src\PaymentLink.cs" />
     <Compile Include="..\src\Refund.cs" />
     <Compile Include="..\src\Order.cs" />
     <Compile Include="..\src\Product.cs" />
