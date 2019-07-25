@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Payabbhi
 {
-    public class PaymentLink : PayabbhiEntity
+    public class VirtualAccount : PayabbhiEntity
     {
         [JsonProperty("id")]
 		public string Id { get; set; }
@@ -13,14 +13,14 @@ namespace Payabbhi
 		[JsonProperty("object")]
 		public string Object { get; set; }
 
-		[JsonProperty("amount")]
-		public int Amount { get; set; }
+        [JsonProperty("status")]
+		public string Status { get; set; }
+
+		[JsonProperty("paid_amount")]
+		public int PaidAmount { get; set; }
 
 		[JsonProperty("customer_id")]
 		public string CustomerId { get; set; }
-
-		[JsonProperty("name")]
-		public string Name { get; set; }
 
 		[JsonProperty("email")]
 		public string Email { get; set; }
@@ -28,103 +28,94 @@ namespace Payabbhi
 		[JsonProperty("contact_no")]
 		public string ContactNo { get; set; }
 
-		[JsonProperty("currency")]
-		public string Currency { get; set; }
+        [JsonProperty("order_id")]
+		public string OrderId { get; set; }
 
-		[JsonProperty("description")]
+		[JsonProperty("invoice_id")]
+		public string InvoiceId { get; set; }
+
+        [JsonProperty("description")]
 		public string Description { get; set; }
 
-		[JsonProperty("due_date")]
-		public int DueDate { get; set; }
+        [JsonProperty("collection_method")]
+		public CollectionMethod CollectionMethod { get; set; }
 
-		[JsonProperty("notify_by")]
-		public string NotifyBy { get; set; }
+        [JsonProperty("notification_method")]
+		public string NotificationMethod { get; set; }
 
-		[JsonProperty("customer_notification_by")]
+        [JsonProperty("customer_notification_by")]
 		public string CustomerNotificationBy { get; set; }
 
-		[JsonProperty("payment_attempt")]
-		public int PaymentAttempt { get; set; }
-
-		[JsonProperty("receipt_no")]
-		public string ReceiptNo { get; set; }
-
-		[JsonProperty("status")]
-		public string Status { get; set; }
-
-		[JsonProperty("url")]
-		public string Url { get; set; }
-
-        [JsonProperty("notes")]
+		[JsonProperty("notes")]
         public object Notes { get; set; }
 
         [JsonProperty("created_at")]
         public int CreatedAt { get; set; }
 
         readonly HttpClient httpClient;
-        string relativeUrl = "/api/v1/payment_links";
+        string relativeUrl = "/api/v1/virtual_accounts";
 
-        public PaymentLink()
+        public VirtualAccount()
         {
             httpClient = new HttpClient();
         }
 
         /// <summary>
-		/// Retrieve a Payment link
+		/// Retrieve a Virtual Account
 		/// </summary>
-		/// <returns>Payment Link Object</returns>
-		/// <param name="id">The id of the payment link to retrieve</param>
-        public PaymentLink Retrieve(string id)
+		/// <returns>virtual account object</returns>
+		/// <param name="id">The id of the virtual account to retrieve</param>
+        public VirtualAccount Retrieve(string id)
 		{
 			string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
-			return Converter<PaymentLink>.ConvertFromJson(response);
+			return Converter<VirtualAccount>.ConvertFromJson(response);
 		}
 
         /// <summary>
-		/// List all payment links
+		/// List all virtual account
 		/// </summary>
-		/// <returns>List of payment links</returns>
+		/// <returns>List of virtual account</returns>
 		/// <param name="options">Additional Options</param>
-        public PayabbhiList<PaymentLink> All(IDictionary<string, object> options = null)
+        public PayabbhiList<VirtualAccount> All(IDictionary<string, object> options = null)
 		{
 			var response = httpClient.Request(relativeUrl, HttpMethod.Get, options);
-			return Converter<PayabbhiList<PaymentLink>>.ConvertFromJson(response);
+			return Converter<PayabbhiList<VirtualAccount>>.ConvertFromJson(response);
 		}
 
         /// <summary>
-		/// Creates a new payment link
+		/// Creates a new virtual account
 		/// </summary>
-		/// <returns>PaymentLink Object</returns>
+		/// <returns>virtual account object</returns>
 		/// <param name="options">Addition Options</param>
-        public PaymentLink Create(IDictionary<string, object> options)
+        public VirtualAccount Create(IDictionary<string, object> options)
 		{
 			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
-			return Converter<PaymentLink>.ConvertFromJson(response);
+			return Converter<VirtualAccount>.ConvertFromJson(response);
 		}
        
         /// <summary>
-		/// Cancel a Payment link
+		/// Delete a virtual account
 		/// </summary>
-		/// <returns>PaymentLink Object</returns>
-		/// <param name="id">The id of the payment link to cancel</param>
-        public PaymentLink Cancel()
+		/// <returns>virtual account object</returns>
+		/// <param name="id">The id of the virtual account to delete</param>
+        public VirtualAccount Delete()
         {
             string id = this.Id;
             if (String.IsNullOrEmpty(id))
             {
                 throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
             }
-            string requestUrl = string.Format("{0}/{1}/cancel", relativeUrl, id);
-            var response = httpClient.Request(requestUrl, HttpMethod.Post, null);
-            return Converter<PaymentLink>.ConvertFromJson(response);
+            string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
+            var response = httpClient.Request(requestUrl, HttpMethod.Patch, null);
+            return Converter<VirtualAccount>.ConvertFromJson(response);
         }
 
         /// <summary>
-		/// List all Payments for a Payment link
+		/// List all Payments for a virtual account
 		/// </summary>
 		/// <returns>List of payments</returns>
-		/// <param name="id">The id of the payment link to list all payments</param>
+		/// <param name="id">The id of the virtual account to list all payments</param>
         public PayabbhiList<Payment> Payments(){
             string id = this.Id;
             if (String.IsNullOrEmpty(id))
@@ -134,6 +125,6 @@ namespace Payabbhi
             string requestUrl = string.Format("{0}/{1}/payments", relativeUrl, id);
             var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
 			return Converter<PayabbhiList<Payment>>.ConvertFromJson(response);
-        }
+        }   
     }
 }

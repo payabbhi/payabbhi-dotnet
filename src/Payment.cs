@@ -79,6 +79,12 @@ namespace Payabbhi
 		[JsonProperty("refunds")]
 		public PayabbhiList<Refund> Refunds { get; set; }
 
+		[JsonProperty("payer_bank_account")]
+		public BankAccount PayerBankAccount { get; set; }
+
+		[JsonProperty("virtual_account")]
+		public VirtualAccount VirtualAccount { get; set; }
+
 		[JsonProperty("error_code")]
 		public string ErrorCode { get; set; }
 
@@ -87,6 +93,12 @@ namespace Payabbhi
 
 		[JsonProperty("created_at")]
 		public int CreatedAt { get; set; }
+
+		[JsonProperty("payment_page_id")]
+		public string PaymentPageId { get; set; }
+
+		[JsonProperty("virtual_account_id")]
+		public string VirtualAccountId { get; set; }
 
 		readonly HttpClient httpClient;
 		string relativeUrl = "/api/v1/payments";
@@ -203,5 +215,18 @@ namespace Payabbhi
 			var response = httpClient.Request(requestUrl, HttpMethod.Get, options);
 			return Converter<PayabbhiList<Transfer>>.ConvertFromJson(response);
 		}
+
+		///<summary>
+		///Retrieve Virtual account details for a payment
+		///</summary>
+		///<returns>a payment object</returns>
+		///<param name="id">The id of the payment to retrieve virtual account</param>
+
+		public Payment Details(string id)
+		{
+			string requestUrl = string.Format("{0}/{1}/virtual_account", relativeUrl, id);
+			var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
+			return Converter<Payment>.ConvertFromJson(response);
+		} 
 	}
 }

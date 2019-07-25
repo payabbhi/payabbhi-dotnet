@@ -34,6 +34,9 @@ namespace Payabbhi
 		[JsonProperty("notify_by")]
 		public string NotifyBy { get; set; }
 
+		[JsonProperty("customer_notification_by")]
+		public string CustomerNotificationBy { get; set; }
+
 		[JsonProperty("payment_attempt")]
 		public int PaymentAttempt { get; set; }
 
@@ -52,8 +55,32 @@ namespace Payabbhi
 		[JsonProperty("notes")]
 		public object Notes { get; set; }
 
+		[JsonProperty("place_of_supply")]
+		public string PlaceOfSupply { set; get; }
+
+		[JsonProperty("gross_amount")]
+		public int GrossAmount { set; get; }
+
+		[JsonProperty("tax_amount")]
+		public int TaxAmount { set; get; }
+
+		[JsonProperty("customer_notes")]
+		public string CustomerNotes { get; set; }
+
+		[JsonProperty("terms_conditions")]
+		public string TermsConditions { get; set; }
+
+		[JsonProperty("subscription_id")]
+		public string Subscription_Id { get; set; }
+
 		[JsonProperty("created_at")]
 		public int CreatedAt { get; set; }
+
+		[JsonProperty("issued_at")]
+		public int IssuedAt { get; set; }
+
+		[JsonProperty("voided_at")]
+		public int VoidedAt { get; set; }
 
 		readonly HttpClient httpClient;
 		string relativeUrl = "/api/v1/invoices";

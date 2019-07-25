@@ -19,8 +19,8 @@ namespace Payabbhi
 		[JsonProperty("source_id")]
 		public string SourceId { get; set; }
 
-		[JsonProperty("recipient_id")]
-		public string RecipientId { get; set; }
+		[JsonProperty("beneficiary_id")]
+		public string BeneficiaryId { get; set; }
 
 		[JsonProperty("amount")]
 		public int Amount { get; set; }
@@ -33,6 +33,16 @@ namespace Payabbhi
 
 		[JsonProperty("gst")]
 		public int Gst { get; set; }
+
+		[JsonProperty("amount_reversed")]
+		public int AmountReversed { get; set; }
+
+		[JsonProperty("settlement_id")]
+
+		public string SettlementId { get; set; }
+
+		[JsonProperty("settled")]
+		public bool Settled { get; set; }
 
 		[JsonProperty("notes")]
 		public object Notes { get; set; }

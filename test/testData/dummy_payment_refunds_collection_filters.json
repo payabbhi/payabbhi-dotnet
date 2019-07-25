@@ -2,14 +2,17 @@
     "total_count": 2,
     "object": "list",
     "data": [
-        {
-            "payment_id": "dummy_payment_id",
-            "created_at": 1495889337,
-            "object": "refund",
-            "id": "rfnd_gAPHraDs3vhpDyRU",
-            "currency": "INR",
-            "amount": 1,
-            "notes": {}
-        }
+      {
+        "id": "rfnd_iqPqyu7Ds5UaC434",
+        "object": "refund",
+        "amount": 200,
+        "currency": "INR",
+        "payment_id": "dummy_payment_id",
+        "notes": {
+          "item_count": "2",
+          "sales_channel": "website"
+        },
+        "created_at": 1495547054
+      }
     ]
-}
+  }

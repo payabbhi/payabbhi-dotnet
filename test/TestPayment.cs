@@ -240,5 +240,16 @@ namespace UnitTesting.Payabbhi.Tests
 			Assert.Equal(ex.Message, "message: Object Id not set\n");
 			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
+
+		[Fact]
+		public void TestGetVirtualAccount()
+		{
+			string filepath = "dummy_payment_with_virtual_account.json";
+			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
+			Payment payment = client.Payment.Details(PAYMENTID);
+			string expectedJsonString = Helper.GetJsonString(filepath);
+			Helper.AssertEntity(payment, expectedJsonString);
+		}
 	}
 }

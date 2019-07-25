@@ -28,8 +28,35 @@ namespace Payabbhi
 		[JsonProperty("customer_id")]
 		public string CustomerId { get; set; }
 
+		[JsonProperty("unit")]
+		public string Unit { get; set; }
+
 		[JsonProperty("quantity")]
 		public int Quantity { get; set; }
+
+		[JsonProperty("discount")]
+		public int Discount { get; set; }
+
+		[JsonProperty("hsn_code")]
+		public string Hsn_Code { get; set; }
+
+		[JsonProperty("sac_code")]
+		public string Sac_Code { get; set; }
+
+		[JsonProperty("tax_rate")]
+		public int TaxRate { get; set; }
+
+		[JsonProperty("cess")]
+		public int Cess { get; set; }
+
+		[JsonProperty("tax_inclusive")]
+		public bool TaxInclusive { get; set; }
+
+		[JsonProperty("tax_amount")]
+		public int TaxAmount { get; set; }
+
+		[JsonProperty("net_amount")]
+		public int NetAmount { get; set; }
 
 		[JsonProperty("notes")]
 		public object Notes { get; set; }

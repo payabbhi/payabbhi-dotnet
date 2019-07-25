@@ -67,6 +67,9 @@ namespace Payabbhi
 		[JsonProperty("created_at")]
 		public int CreatedAt { get; set; }
 
+		[JsonProperty("voided_at")]
+		public int VoidedAt { get; set; }
+
 		readonly HttpClient httpClient;
 		string relativeUrl = "/api/v1/subscriptions";
 

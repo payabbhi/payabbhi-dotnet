@@ -56,8 +56,10 @@
     <Compile Include="..\src\Plan.cs" />
     <Compile Include="..\src\Customer.cs" />
     <Compile Include="..\src\Subscription.cs" />
+    <Compile Include="..\src\VirtualAccount.cs" />
     <Compile Include="..\src\InvoiceItem.cs" />
     <Compile Include="..\src\Invoice.cs" />
+    <Compile Include="..\src\BeneficiaryAccount.cs" />
     <Compile Include="..\src\Transfer.cs" />
     <Compile Include="..\src\Event.cs" />
     <Compile Include="..\src\Settlement.cs" />
@@ -79,6 +81,8 @@
     <Compile Include="..\src\PayabbhiHttpWebRequestFactory.cs" />
     <Compile Include="..\src\CurrentOS.cs" />
     <Compile Include="..\src\EmiInfo.cs" />
+    <Compile Include="..\src\CollectionMethod.cs" />
+    <Compile Include="..\src\BankAccount.cs" />
     <Compile Include="..\src\OSHelper.cs" />
     <Compile Include="..\src\PayabbhiList.cs" />
   </ItemGroup>

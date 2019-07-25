@@ -18,8 +18,10 @@ namespace Payabbhi
 		Plan plan;
 		Customer customer;
 		Subscription subscription;
+		VirtualAccount virtualAccount;
 		InvoiceItem invoiceItem;
 		Invoice invoice;
+		BeneficiaryAccount beneficiaryAccount;
 		Transfer transfer;
 		Event evt;
 		Settlement settlement;
@@ -204,6 +206,18 @@ namespace Payabbhi
 			}
 		}
 
+		public VirtualAccount VirtualAccount
+		{
+			get
+			{
+				if (virtualAccount == null)
+				{
+					virtualAccount = new VirtualAccount();
+				}
+				return virtualAccount;
+			}
+		}
+
 		public InvoiceItem InvoiceItem
 		{
 			get
@@ -225,6 +239,18 @@ namespace Payabbhi
 					invoice = new Invoice();
 				}
 				return invoice;
+			}
+		}
+
+		public BeneficiaryAccount BeneficiaryAccount
+		{
+			get
+			{
+				if (beneficiaryAccount == null)
+				{
+					beneficiaryAccount = new BeneficiaryAccount();
+				}
+				return beneficiaryAccount;
 			}
 		}
 
