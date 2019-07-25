@@ -14,7 +14,7 @@
           "gst": 0,
           "amount_reversed": 0,
           "settlement_id": "",
-          "settled": "",
+          "settled": false,
           "notes": {
               "home": "kolkata"
           },
@@ -32,7 +32,7 @@
           "gst": 0,            
           "amount_reversed": 0,
           "settlement_id": "",
-          "settled": "",
+          "settled": false,
           "notes": {
               "home": "kolkata"
           },
@@ -50,7 +50,7 @@
           "gst": 0,            
           "amount_reversed": 0,
           "settlement_id": "",
-          "settled": "",
+          "settled": false,
           "notes": {
               "home": "kolkata"
           },
