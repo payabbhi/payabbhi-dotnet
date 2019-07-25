@@ -164,9 +164,9 @@ namespace UnitTesting.Payabbhi.Tests
 		public void TestCreateTransfersAgainstPayment()
 		{
 			string filepath = "dummy_payment.json";
-			string url = string.Format("{0}/{1}", paymentURL, "pay_W2FmbqANt09epUOz");
+			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			Payment payment = client.Payment.Retrieve("pay_W2FmbqANt09epUOz");
+			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertEntity(payment, expectedJsonString);
 
@@ -177,21 +177,21 @@ namespace UnitTesting.Payabbhi.Tests
 			  {"amount", 20 },
 			  {"currency", "INR" },
 			  {"description", "Tranfer 1" },
-			  {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+			  {"beneficiary_id", "recp_Y2ojRlJVqRMhB0Ay" }
 		  };
 			Dictionary<string, object> transferItem2 = new Dictionary<string, object>()
 		  {
 			  {"amount", 30 },
 			  {"currency", "INR" },
 			  {"description", "Tranfer 2" },
-			  {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+			  {"beneficiary_id", "recp_Y2ojRlJVqRMhB0Ay" }
 		  };
 			Dictionary<string, object> transferItem3 = new Dictionary<string, object>()
 		  {
 			  {"amount", 50 },
 			  {"currency", "INR" },
 			  {"description", "Tranfer 3" },
-			  {"recipient_id", "recp_Y2ojRlJVqRMhB0Ay" }
+			  {"beneficiary_id", "recp_Y2ojRlJVqRMhB0Ay" }
 		  };
 			Dictionary<string, object>[] transferArr = { transferItem1, transferItem2, transferItem3 };
 			var transfers = payment.Transfer(new Dictionary<string, object>() {
@@ -216,9 +216,9 @@ namespace UnitTesting.Payabbhi.Tests
 		public void TestListTransfersForPayment()
 		{
 			string filepath = "dummy_payment.json";
-			string url = string.Format("{0}/{1}", paymentURL, "pay_W2FmbqANt09epUOz");
+			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			Payment payment = client.Payment.Retrieve("pay_W2FmbqANt09epUOz");
+			Payment payment = client.Payment.Retrieve(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertEntity(payment, expectedJsonString);
 

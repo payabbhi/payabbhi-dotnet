@@ -38,7 +38,6 @@ namespace Payabbhi
 		public int AmountReversed { get; set; }
 
 		[JsonProperty("settlement_id")]
-
 		public string SettlementId { get; set; }
 
 		[JsonProperty("settled")]

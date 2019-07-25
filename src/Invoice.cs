@@ -70,9 +70,6 @@ namespace Payabbhi
 		[JsonProperty("terms_conditions")]
 		public string TermsConditions { get; set; }
 
-		[JsonProperty("subscription_id")]
-		public string Subscription_Id { get; set; }
-
 		[JsonProperty("created_at")]
 		public int CreatedAt { get; set; }
 

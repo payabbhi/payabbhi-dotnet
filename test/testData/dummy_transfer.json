@@ -8,7 +8,7 @@
   "currency": "INR",
   "fee": 0,
   "gst": 0,    
-  "amount_reversed": "",
+  "amount_reversed": 0,
   "settlement_id": "",
   "settled": "",
   "notes": null,
