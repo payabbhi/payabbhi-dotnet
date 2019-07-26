@@ -80,5 +80,15 @@ namespace Payabbhi
 			return Converter<PayabbhiList<Transfer>>.ConvertFromJson(response);
 		}
 
+		/// <summary>
+		/// Create direct transfer
+		/// </summary>
+		/// <returns>Transfer Object</returns>
+		/// <param name="options">Additional Options</param>
+		public Transfer Create(IDictionary<string, object> options)
+		{
+			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
+			return Converter<Transfer>.ConvertFromJson(response);
+		}
 	}
 }

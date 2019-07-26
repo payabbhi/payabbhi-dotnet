@@ -46,5 +46,23 @@ namespace UnitTesting.Payabbhi.Tests
 			Helper.AssertEntity(transfer, expectedJsonString);
 		}
 
+		[Fact]
+		public void TestCreateTransfer()
+		{
+			string filepath = "dummy_direct_transfer.json";
+			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, transferURL));
+			Dictionary<string, object> transferItem = new Dictionary<string, object>() {
+			  {"amount", 100 },
+			  {"currency", "INR" },
+			  {"description", "Tranfer 1" },
+			  {"beneficiary_id", "bene_Za30i2k3p6blq3i1" }
+		  	};
+			Dictionary<string, object>[] transferArr = { transferItem };
+			IDictionary<string, object> options = new Dictionary<string, object>();
+			options.Add("transfers", transferArr);
+			Transfer transfer = client.Transfer.Create(options);
+			string expectedJsonString = Helper.GetJsonString(filepath);
+			Helper.AssertEntity(transfer, expectedJsonString);
+		}
 	}
 }
