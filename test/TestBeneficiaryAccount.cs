@@ -52,7 +52,7 @@ namespace UnitTesting.Payabbhi.Tests
         {
             string filepath = "dummy_beneficiary_account.json";
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, beneficiaryAccountURL));
-            IDictionary<string, object> options = new IDictionary<string, object>();
+            IDictionary<string, object> options = new Dictionary<string, object>();
             options.Add("name", "Bruce Wayne");
             options.Add("beneficiary_name", "bene_test");
             options.Add("ifsc", "IFSC0001890");

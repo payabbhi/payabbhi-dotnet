@@ -85,10 +85,10 @@ namespace Payabbhi
 		/// </summary>
 		/// <returns>Beneficiary Object</returns>
 		/// <param name="options">Addition Options</param>
-        public PaymentLink Create(IDictionary<string, object> options)
+        public BeneficiaryAccount Create(IDictionary<string, object> options)
 		{
 			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
-			return Converter<PaymentLink>.ConvertFromJson(response);
+			return Converter<BeneficiaryAccount>.ConvertFromJson(response);
 		}
     }
 }
