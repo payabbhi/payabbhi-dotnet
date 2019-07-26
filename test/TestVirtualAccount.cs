@@ -54,6 +54,7 @@ namespace UnitTesting.Payabbhi.Tests
 			string[] collectionMethod = { "bank_account" };
 			IDictionary<string, object> options = new Dictionary<string, object>();
 			options.Add("invoice_id", "invt_srxOZZk6dIgWTVls");
+			options.Add("collection_methods", collectionMethod);
 			options.Add("customer_id", "cust_2WmsQoSRZMWWkcZg");
 			options.Add("email", "test@example.com");
 			options.Add("notification_method", "both");

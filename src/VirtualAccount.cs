@@ -37,7 +37,7 @@ namespace Payabbhi
         [JsonProperty("description")]
 		public string Description { get; set; }
 
-        [JsonProperty("collection_method")]
+        [JsonProperty("collection_methods")]
 		public CollectionMethod CollectionMethod { get; set; }
 
         [JsonProperty("notification_method")]
