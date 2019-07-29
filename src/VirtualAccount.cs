@@ -38,7 +38,7 @@ namespace Payabbhi
 		public string Description { get; set; }
 
         [JsonProperty("collection_methods")]
-		public CollectionMethod CollectionMethods { get; set; }
+		public List<Object> CollectionMethods { get; set; }
 
         [JsonProperty("notification_method")]
 		public string NotificationMethod { get; set; }
@@ -93,7 +93,7 @@ namespace Payabbhi
 			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
 			return Converter<VirtualAccount>.ConvertFromJson(response);
 		}
-       
+
         /// <summary>
 		/// Delete a virtual account
 		/// </summary>
@@ -125,6 +125,6 @@ namespace Payabbhi
             string requestUrl = string.Format("{0}/{1}/payments", relativeUrl, id);
             var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
 			return Converter<PayabbhiList<Payment>>.ConvertFromJson(response);
-        }   
+        }
     }
 }
