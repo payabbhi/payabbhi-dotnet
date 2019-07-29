@@ -25,7 +25,7 @@ namespace Payabbhi
 				queryString = MakeQueryString(options);
 				relativeUrl = relativeUrl + "?" + queryString;
 			}
-			else if (method == HttpMethod.Post || method == HttpMethod.Put)
+			else if (method == HttpMethod.Post || method == HttpMethod.Put || method == HttpMethod.Patch)
 			{
 				postData = JsonConvert.SerializeObject(options);
 			}

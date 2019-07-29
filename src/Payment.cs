@@ -222,7 +222,7 @@ namespace Payabbhi
 		///<returns>a payment object</returns>
 		///<param name="id">The id of the payment to retrieve virtual account</param>
 
-		public Payment Details(string id)
+		public Payment Virtual_Account(string id)
 		{
 			string requestUrl = string.Format("{0}/{1}/virtual_account", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Get, null);

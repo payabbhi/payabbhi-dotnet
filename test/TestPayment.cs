@@ -245,9 +245,9 @@ namespace UnitTesting.Payabbhi.Tests
 		public void TestGetVirtualAccount()
 		{
 			string filepath = "dummy_payment_with_virtual_account.json";
-			string url = string.Format("{0}/{1}", paymentURL, PAYMENTID);
+			string url = string.Format("{0}/{1}/virtual_account", paymentURL, PAYMENTID);
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			Payment payment = client.Payment.Details(PAYMENTID);
+			Payment payment = client.Payment.Virtual_Account(PAYMENTID);
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertEntity(payment, expectedJsonString);
 		}
