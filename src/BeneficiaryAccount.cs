@@ -3,51 +3,51 @@ using Newtonsoft.Json;
 
 namespace Payabbhi
 {
-    public class BeneficiaryAccount : PayabbhiEntity
-    {
-        [JsonProperty("id")]
+  public class BeneficiaryAccount : PayabbhiEntity
+  {
+    [JsonProperty("id")]
 		public string Id { get; set; }
 
 		[JsonProperty("object")]
 		public string Object { get; set; }
 
-        [JsonProperty("name")]
+    [JsonProperty("name")]
 		public string Name { get; set; }
 
 		[JsonProperty("contact_no")]
 		public string ContactNo { get; set; }
 
-        [JsonProperty("email_id")]
+    [JsonProperty("email_id")]
 		public string EmailId { get; set; }
 
 		[JsonProperty("bussiness_name")]
 		public string BussinessName { get; set; }
 
-        [JsonProperty("business_entity_type")]
+    [JsonProperty("business_entity_type")]
 		public string BusinessEntityType { get; set; }
 
 		[JsonProperty("beneficiary_name")]
 		public string BeneficiaryName { get; set; }
 
-        [JsonProperty("ifsc")]
-        public string Ifsc { get; set; }
+    [JsonProperty("ifsc")]
+    public string Ifsc { get; set; }
 
-        [JsonProperty("bank_account_number")]
-        public string AccountNo { get; set; }
+    [JsonProperty("bank_account_number")]
+    public string AccountNo { get; set; }
 
-        [JsonProperty("account_type")]
-        public string AccountType { get; set; }
+    [JsonProperty("account_type")]
+    public string AccountType { get; set; }
 
-        [JsonProperty("status")]
-        public int Status { get; set; }
+    [JsonProperty("status")]
+    public int Status { get; set; }
 
-        [JsonProperty("notes")]
+    [JsonProperty("notes")]
 		public object Notes { get; set; }
 
 		[JsonProperty("created_at")]
 		public int CreatedAt { get; set; }
 
-        readonly HttpClient httpClient;
+    readonly HttpClient httpClient;
 		string relativeUrl = "/api/v1/beneficiaryaccounts";
 
 		public BeneficiaryAccount()
@@ -55,7 +55,7 @@ namespace Payabbhi
 			httpClient = new HttpClient();
 		}
 
-        /// <summary>
+    /// <summary>
 		/// Retrieves a beneficiary object using beneficiary id
 		/// </summary>
 		/// <returns>Beneficiary Object</returns>
@@ -78,7 +78,7 @@ namespace Payabbhi
 			return Converter<PayabbhiList<BeneficiaryAccount>>.ConvertFromJson(response);
 		}
 
-        /// <summary>
+    /// <summary>
 		/// Creates a new beneficiary
 		/// </summary>
 		/// <returns>Beneficiary Object</returns>
@@ -88,5 +88,5 @@ namespace Payabbhi
 			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
 			return Converter<BeneficiaryAccount>.ConvertFromJson(response);
 		}
-    }
+  }
 }

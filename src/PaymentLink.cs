@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace Payabbhi
 {
-    public class PaymentLink : PayabbhiEntity
-    {
-        [JsonProperty("id")]
+  public class PaymentLink : PayabbhiEntity
+  {
+    [JsonProperty("id")]
 		public string Id { get; set; }
 
 		[JsonProperty("object")]
@@ -55,85 +55,85 @@ namespace Payabbhi
 		[JsonProperty("url")]
 		public string Url { get; set; }
 
-        [JsonProperty("notes")]
-        public object Notes { get; set; }
+    [JsonProperty("notes")]
+    public object Notes { get; set; }
 
-        [JsonProperty("created_at")]
-        public int CreatedAt { get; set; }
+    [JsonProperty("created_at")]
+    public int CreatedAt { get; set; }
 
-        readonly HttpClient httpClient;
-        string relativeUrl = "/api/v1/payment_links";
+    readonly HttpClient httpClient;
+    string relativeUrl = "/api/v1/payment_links";
 
-        public PaymentLink()
-        {
-            httpClient = new HttpClient();
-        }
+    public PaymentLink()
+    {
+        httpClient = new HttpClient();
+    }
 
-        /// <summary>
+    /// <summary>
 		/// Retrieve a Payment link
 		/// </summary>
 		/// <returns>Payment Link Object</returns>
 		/// <param name="id">The id of the payment link to retrieve</param>
-        public PaymentLink Retrieve(string id)
+    public PaymentLink Retrieve(string id)
 		{
 			string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
 			return Converter<PaymentLink>.ConvertFromJson(response);
 		}
 
-        /// <summary>
+    /// <summary>
 		/// List all payment links
 		/// </summary>
 		/// <returns>List of payment links</returns>
 		/// <param name="options">Additional Options</param>
-        public PayabbhiList<PaymentLink> All(IDictionary<string, object> options = null)
+    public PayabbhiList<PaymentLink> All(IDictionary<string, object> options = null)
 		{
 			var response = httpClient.Request(relativeUrl, HttpMethod.Get, options);
 			return Converter<PayabbhiList<PaymentLink>>.ConvertFromJson(response);
 		}
 
-        /// <summary>
+    /// <summary>
 		/// Creates a new payment link
 		/// </summary>
 		/// <returns>PaymentLink Object</returns>
 		/// <param name="options">Addition Options</param>
-        public PaymentLink Create(IDictionary<string, object> options)
+    public PaymentLink Create(IDictionary<string, object> options)
 		{
 			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
 			return Converter<PaymentLink>.ConvertFromJson(response);
 		}
-       
-        /// <summary>
+
+    /// <summary>
 		/// Cancel a Payment link
 		/// </summary>
 		/// <returns>PaymentLink Object</returns>
 		/// <param name="id">The id of the payment link to cancel</param>
-        public PaymentLink Cancel()
-        {
-            string id = this.Id;
-            if (String.IsNullOrEmpty(id))
-            {
-                throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
-            }
-            string requestUrl = string.Format("{0}/{1}/cancel", relativeUrl, id);
-            var response = httpClient.Request(requestUrl, HttpMethod.Post, null);
-            return Converter<PaymentLink>.ConvertFromJson(response);
-        }
+    public PaymentLink Cancel()
+    {
+      string id = this.Id;
+      if (String.IsNullOrEmpty(id))
+      {
+          throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
+      }
+      string requestUrl = string.Format("{0}/{1}/cancel", relativeUrl, id);
+      var response = httpClient.Request(requestUrl, HttpMethod.Post, null);
+      return Converter<PaymentLink>.ConvertFromJson(response);
+    }
 
-        /// <summary>
+    /// <summary>
 		/// List all Payments for a Payment link
 		/// </summary>
 		/// <returns>List of payments</returns>
 		/// <param name="id">The id of the payment link to list all payments</param>
-        public PayabbhiList<Payment> Payments(){
-            string id = this.Id;
-            if (String.IsNullOrEmpty(id))
-            {
-                throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
-            }
-            string requestUrl = string.Format("{0}/{1}/payments", relativeUrl, id);
-            var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
+    public PayabbhiList<Payment> Payments(){
+      string id = this.Id;
+      if (String.IsNullOrEmpty(id))
+      {
+          throw new Error.InvalidRequestError(Constants.Messages.InvalidCallError, null, null, HttpStatusCode.Unused);
+      }
+      string requestUrl = string.Format("{0}/{1}/payments", relativeUrl, id);
+      var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
 			return Converter<PayabbhiList<Payment>>.ConvertFromJson(response);
-        }
     }
+  }
 }
