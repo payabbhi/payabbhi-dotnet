@@ -99,7 +99,7 @@ namespace Payabbhi
 		/// </summary>
 		/// <returns>virtual account object</returns>
 		/// <param name="id">The id of the virtual account to delete</param>
-        public VirtualAccount Delete()
+        public VirtualAccount Close()
         {
             string id = this.Id;
             if (String.IsNullOrEmpty(id))

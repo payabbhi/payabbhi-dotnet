@@ -65,7 +65,7 @@ namespace UnitTesting.Payabbhi.Tests
 		}
 
 		[Fact]
-		public void TestDeleteVirtualAccount()
+		public void TestCloseVirtualAccount()
 		{
 			string filepath = "dummy_virtual_account.json";
 			string url = string.Format("{0}/{1}", virtualAccountURL, VIRTUALACCOUNTID);
@@ -76,17 +76,17 @@ namespace UnitTesting.Payabbhi.Tests
 
 			string filepath2 = "dummy_virtual_account.json";
 			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, url));
-			virtualAccount = virtualAccount.Delete();
+			virtualAccount = virtualAccount.Close();
 			expectedJsonString = Helper.GetJsonString(filepath2);
 			Helper.AssertEntity(virtualAccount, expectedJsonString);
 		}
 
 		[Fact]
-		public void TestEmptyDeleteVirtualAccount()
+		public void TestEmptyCloseVirtualAccount()
 		{
 			string filepath = "dummy_virtual_account.json";
 			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, virtualAccountURL));
-			var ex = Assert.Throws<InvalidRequestError>(() => client.VirtualAccount.Delete());
+			var ex = Assert.Throws<InvalidRequestError>(() => client.VirtualAccount.Close());
 			Assert.Equal(ex.Message, "message: Object Id not set\n");
 			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
 		}
