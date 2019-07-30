@@ -39,7 +39,7 @@ namespace Payabbhi
     public string AccountType { get; set; }
 
     [JsonProperty("status")]
-    public int Status { get; set; }
+    public string Status { get; set; }
 
     [JsonProperty("notes")]
 		public object Notes { get; set; }
