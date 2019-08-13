@@ -72,7 +72,7 @@ namespace UnitTesting.Payabbhi.Tests
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertEntity(invoiceItem, expectedJsonString);
 
-			string delete_url = string.Format("{0}/delete", url);
+			string delete_url = string.Format("{0}", url);
 			client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, delete_url));
 			invoiceItem = invoiceItem.Delete();
 			expectedJsonString = Helper.GetJsonString(filepath);
