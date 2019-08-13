@@ -116,7 +116,7 @@ namespace Payabbhi
 		/// Cancel a subscription
 		/// </summary>
 		/// <returns>Subscription object</returns>
-		public Subscription Cancel()
+		public Subscription Cancel(IDictionary<string, object> options = null)
 		{
 			string id = this.Id;
 			if (String.IsNullOrEmpty(id))
