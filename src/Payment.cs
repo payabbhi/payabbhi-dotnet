@@ -187,7 +187,7 @@ namespace Payabbhi
 		/// </summary>
 		/// <returns>List of transfers created for the payment</returns>
 		/// <param name="options">Additional Options</param>
-		public Transfer Transfer(IDictionary<string, object> options = null)
+		public Transfer Transfer(IDictionary<string, object> options)
 		{
 			string id = this.Id;
 			if (String.IsNullOrEmpty(id))
