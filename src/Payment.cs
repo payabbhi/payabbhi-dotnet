@@ -187,7 +187,7 @@ namespace Payabbhi
 		/// </summary>
 		/// <returns>List of transfers created for the payment</returns>
 		/// <param name="options">Additional Options</param>
-		public PayabbhiList<Transfer> Transfer(IDictionary<string, object> options = null)
+		public Transfer Transfer(IDictionary<string, object> options = null)
 		{
 			string id = this.Id;
 			if (String.IsNullOrEmpty(id))
@@ -196,7 +196,7 @@ namespace Payabbhi
 			}
 			string requestUrl = string.Format("{0}/{1}/transfers", relativeUrl, id);
 			var response = httpClient.Request(requestUrl, HttpMethod.Post, options);
-			return Converter<PayabbhiList<Transfer>>.ConvertFromJson(response);
+			return Converter<Transfer>.ConvertFromJson(response);
 		}
 
 		/// <summary>
