@@ -60,7 +60,7 @@ namespace UnitTesting.Payabbhi.Tests
 			Dictionary<string, object>[] transferArr = { transferItem };
 			IDictionary<string, object> options = new Dictionary<string, object>();
 			options.Add("transfers", transferArr);
-			Transfer transfer = client.Transfer.Create(options);
+			PayabbhiList<Transfer> transfer = client.Transfer.Create(options);
 			string expectedJsonString = Helper.GetJsonString(filepath);
 			Helper.AssertEntity(transfer, expectedJsonString);
 		}

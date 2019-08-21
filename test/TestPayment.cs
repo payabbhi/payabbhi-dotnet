@@ -202,17 +202,6 @@ namespace UnitTesting.Payabbhi.Tests
 		}
 
 		[Fact]
-		public void TestEmptyPaymentCreatesTransfers()
-		{
-			string url = string.Format("{0}/transfers", paymentURL);
-			string filepath = "dummy_transfer_collection.json";
-			Client client = new Client(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			var ex = Assert.Throws<InvalidRequestError>(() => client.Payment.Transfer());
-			Assert.Equal(ex.Message, "message: Object Id not set\n");
-			Assert.Equal(ex.Description, Constants.Messages.InvalidCallError);
-		}
-
-		[Fact]
 		public void TestListTransfersForPayment()
 		{
 			string filepath = "dummy_payment.json";

@@ -85,10 +85,10 @@ namespace Payabbhi
 		/// </summary>
 		/// <returns>Transfer Object</returns>
 		/// <param name="options">Additional Options</param>
-		public Transfer Create(IDictionary<string, object> options)
+		public PayabbhiList<Transfer> Create(IDictionary<string, object> options)
 		{
 			var response = httpClient.Request(relativeUrl, HttpMethod.Post, options);
-			return Converter<Transfer>.ConvertFromJson(response);
+			return Converter<PayabbhiList<Transfer>>.ConvertFromJson(response);
 		}
 	}
 }
