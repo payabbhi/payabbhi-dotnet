@@ -72,7 +72,7 @@ namespace Payabbhi
 		IHttpWebRequest createRequest(string relativeUrl, HttpMethod method)
 		{
 			IHttpWebRequest request = Client.HttpWebRequestClientFactory.Create(Client.BaseUrl + relativeUrl);
-			request.Method = method.ToString();
+			request.Method = method.ToString().ToUpper();
 			request.ContentType = "application/json";
 			request.KeepAlive = false;
 			string authString = string.Format("{0}:{1}", Client.AccessID, Client.SecretKey);
