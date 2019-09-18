@@ -1,0 +1,20 @@
+{
+    "id": "dummy_payment_link_id",
+    "object": "payment_link",
+    "amount": 100,
+    "customer_id": "cust_2WmsQoSRZMWWkcZg",
+    "name": "Bruce",
+    "email": "batman@wayne.com",
+    "contact_no": "9999999999",
+    "currency": "INR",
+    "description": "Test Payment Link",
+    "due_date": 0,
+    "notes": null,
+    "notify_by": "none",
+    "customer_notification_by": "merchant",
+    "payment_attempt": 0,
+    "receipt_no": "Test_R123",
+    "status": "issued",
+    "url": "https://payabbhi.com/zpuoxajg",
+    "created_at": 1556097575
+  }

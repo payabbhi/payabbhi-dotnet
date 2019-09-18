@@ -1,10 +1,9 @@
-namespace Payabbhi
-{
-	public enum HttpMethod
-	{
-		Get,
-		Post,
-		Put,
-		Delete
-	}
+namespace Payabbhi {
+    public enum HttpMethod {
+        Get,
+        Patch,
+        Post,
+        Put,
+        Delete
+    }
 }

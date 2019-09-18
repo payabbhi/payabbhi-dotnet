@@ -9,14 +9,27 @@
     "billing_cycle_count": 5,
     "paid_count": 0,
     "cancel_at_period_end": false,
-    "due_at": 1544278399,
-    "trial_end_at": 1539007999,
-    "trial_duration": 1,
-    "status": "active",
+    "due_at": 0,
+    "trial_end_at": 0,
+    "trial_duration": 0,
+    "status": "cancelled",
+    "mandate": {
+        "id": "mdt_pJu25vSxB6Q9aqx7",
+        "object": "mandate",
+        "method": "bank_account",
+        "instrument": "bank-account",
+        "bank": "Yes Bank",
+        "error_description": "",
+        "url": "https://payabbhi.com/hosted/v1/subscriptions/authorize/live/sub_luQ4QIXzaEIN0g5D",
+        "status": "authorized",
+        "subscription_id": "sub_luQ4QIXzaEIN0g5D",
+        "customer_id": "cust_2WmsQoSRZMWWkcZg",
+        "created_at": 1539008001
+    },
     "current_start_at": 1539007999,
     "current_end_at": 1544278399,
     "ended_at": 0,
     "cancelled_at": 1539008085,
     "created_at": 1539008001,
     "notes": null
-}
+  }

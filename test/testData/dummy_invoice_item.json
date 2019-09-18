@@ -3,11 +3,22 @@
     "object": "invoiceitem",
     "name": "Line Item",
     "description": "",
-    "amount": 100,
+    "amount": 200,
     "currency": "INR",
     "customer_id": "cust_2WmsQoSRZMWWkcZg",
-    "quantity": 1,
+    "quantity": 10,
     "created_at": 1539008001,
+    "notes": null,
     "deleted_at": 0,
-    "notes": null
-}
+    "unit": "",
+    "hsn_code": "hsn_code",
+    "sac_code": "",
+    "tax_rate": 500,
+    "cess": 200,
+    "tax_inclusive": false,
+    "discount": 20,
+    "tax_amount": 138,
+    "net_amount": 2118,
+    "taxable_amount": 1980,
+    "gross_amount": 1980
+  }

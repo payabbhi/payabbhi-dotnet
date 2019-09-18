@@ -1,0 +1,77 @@
+{
+    "id": "dummy_payment_id",
+    "object": "payment",
+    "amount": 50000,
+    "currency": "INR",
+    "status": "captured",
+    "order_id": "",
+    "invoice_id": "",
+    "international": false,
+    "method": "bank_account",
+    "description": "virtual payment",
+    "card": "",
+    "bank": "",
+    "wallet": "",
+    "vpa": "",
+    "email": "test@example.com",
+    "contact_no": "9999999999",
+    "notes": {
+        "note_to_beneficiary": "payment for test",
+        "vac_channel": "virtual_account"
+    },
+    "fee": 200,
+    "service_tax": 0,
+    "payout_amount": 49800,
+    "payout_type": "Cr",
+    "settlement_id": "stl_abjBUMNyLnzGbFOC",
+    "refunded_amount": 0,
+    "refund_status": "",
+    "refunds": {
+        "total_count": 0,
+        "object": "list",
+        "data": []
+    },
+    "payer_bank_account": {
+        "id": "bank_fANeUeWFt0AmUkYD",
+        "object": "bank_account_payment",
+        "type": "NEFT",
+        "name": "Carla Thompson",
+        "address": "",
+        "account_no": "9867234567123459800002355",
+        "account_type": "Savings",
+        "ifsc": "HDFC0000043",
+        "note_to_beneficiary": "payment for test",
+        "created_at": 1560409074
+    },
+    "virtual_account": {
+        "id": "va_PakYenlyIIPjGwoU",
+        "object": "virtual_account",
+        "status": "active",
+        "paid_amount": 100000,
+        "customer_id": "cust_2BCT1Tvgg1gNjVPu",
+        "email": "test@example.com",
+        "contact_no": "9999999999",
+        "order_id": "",
+        "invoice_id": "",
+        "description": "virtual payment",
+        "collection_methods": [
+            {
+                "id": "bank_JuiL7ZVhewQPyFg2",
+                "object": "bank_account",
+                "name": "Bruce",
+                "account_no": "AP09ARfqrbt62LEpT9YEGyk62zUO2YrEmg",
+                "ifsc": "YESB0CMSNOC",
+                "created_at": 1560408743
+            }
+        ],
+        "notification_method": "both",
+        "customer_notification_by": "platform",
+        "notes": {
+            "channel": "virtual_account"
+        },
+        "created_at": 1560408743
+    },
+    "error_code": "",
+    "error_description": "",
+    "created_at": 1560409074
+}
