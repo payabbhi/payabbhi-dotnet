@@ -1,43 +1,40 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Payabbhi
-{
-    public class Settlement : PayabbhiEntity
-    {
-        [JsonProperty("id")]
-		public string Id { get; set; }
+namespace Payabbhi {
+    public class Settlement : PayabbhiEntity {
+        [JsonProperty ("id")]
+        public string Id { get; set; }
 
-		[JsonProperty("object")]
-		public string Object { get; set; }
+        [JsonProperty ("object")]
+        public string Object { get; set; }
 
-		[JsonProperty("amount")]
-		public int Amount { get; set; }
+        [JsonProperty ("amount")]
+        public int Amount { get; set; }
 
-		[JsonProperty("currency")]
+        [JsonProperty ("currency")]
         public string Currency { get; set; }
 
-        [JsonProperty("status")]
+        [JsonProperty ("status")]
         public string Status { get; set; }
 
-        [JsonProperty("fees")]
+        [JsonProperty ("fees")]
         public int Fees { get; set; }
 
-        [JsonProperty("gst")]
+        [JsonProperty ("gst")]
         public int Gst { get; set; }
 
-        [JsonProperty("utr")]
+        [JsonProperty ("utr")]
         public string Utr { get; set; }
 
-        [JsonProperty("settled_at")]
+        [JsonProperty ("settled_at")]
         public int SettledAt { get; set; }
 
         readonly HttpClient httpClient;
         string relativeUrl = "/api/v1/settlements";
 
-        public Settlement()
-        {
-            httpClient = new HttpClient();
+        public Settlement () {
+            httpClient = new HttpClient ();
         }
 
         /// <summary>
@@ -45,11 +42,10 @@ namespace Payabbhi
         /// </summary>
         /// <returns>Settlement Object</returns>
         /// <param name="id">The id of the settlement to retrieve</param>
-        public Settlement Retrieve(string id)
-        {
-            string requestUrl = string.Format("{0}/{1}", relativeUrl, id);
-            var response = httpClient.Request(requestUrl, HttpMethod.Get, null);
-            return Converter<Settlement>.ConvertFromJson(response);
+        public Settlement Retrieve (string id) {
+            string requestUrl = string.Format ("{0}/{1}", relativeUrl, id);
+            var response = httpClient.Request (requestUrl, HttpMethod.Get, null);
+            return Converter<Settlement>.ConvertFromJson (response);
         }
 
         /// <summary>
@@ -57,10 +53,9 @@ namespace Payabbhi
         /// </summary>
         /// <returns>List of settlements</returns>
         /// <param name="options">Additional Options</param>
-        public PayabbhiList<Settlement> All(IDictionary<string, object> options = null)
-        {
-            var response = httpClient.Request(relativeUrl, HttpMethod.Get, options);
-            return Converter<PayabbhiList<Settlement>>.ConvertFromJson(response);
+        public PayabbhiList<Settlement> All (IDictionary<string, object> options = null) {
+            var response = httpClient.Request (relativeUrl, HttpMethod.Get, options);
+            return Converter<PayabbhiList<Settlement>>.ConvertFromJson (response);
         }
     }
 }
