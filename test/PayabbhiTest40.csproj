@@ -60,6 +60,10 @@
     <Compile Include="MockHttpWebRequestFactory.cs" />
     <Compile Include="TestError.cs" />
     <Compile Include="TestCurrentOS.cs" />
+    <Compile Include="TestBeneficiaryAccount.cs" />
+    <Compile Include="TestPaymentLink.cs" />
+    <Compile Include="TestSettlement.cs" />
+    <Compile Include="TestVirtualAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="testData\" />

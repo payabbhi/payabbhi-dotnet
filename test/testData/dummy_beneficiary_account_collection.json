@@ -1,0 +1,60 @@
+{
+    "total_count": 45,
+    "object": "list",
+    "data": [
+        {
+            "id": "bene_d03f199815ef4ce9",
+            "object": "beneficiary_account",
+            "name": "ui_test02",
+            "contact_no": "9999999999",
+            "email_id": "test@gmail.com",
+            "business_name": "ui_test02",
+            "business_entity_type": "Individual",
+            "beneficiary_name": "ui_test02",
+            "ifsc": "ABCD0001890",
+            "bank_account_number": "50100030219",
+            "account_type": "Savings",
+            "status": "created",
+            "notes": null,
+            "created_at": 1562322992
+        },
+        {
+            "id": "bene_d7d8b37d264c4264",
+            "object": "beneficiary_account",
+            "name": "ui_test",
+            "contact_no": "9888888888",
+            "email_id": "ui_test@abc.com",
+            "business_name": "UI-Test",
+            "business_entity_type": "Individual",
+            "beneficiary_name": "ui_test",
+            "ifsc": "ABCD0001890",
+            "bank_account_number": "50100000219",
+            "account_type": "Savings",
+            "status": "registered",
+            "notes": {
+                "api": "no",
+                "ui": "yes"
+            },
+            "created_at": 1562322515
+        },
+        {
+            "id": "bene_e8c8fb2ac5034d57",
+            "object": "beneficiary_account",
+            "name": "ben_test",
+            "contact_no": "1234567890",
+            "email_id": "benf109@abc.com",
+            "business_name": "benf_business",
+            "business_entity_type": "B2B",
+            "beneficiary_name": "SSG",
+            "ifsc": "ABCD0001890",
+            "bank_account_number": "50100005219",
+            "account_type": "Savings",
+            "status": "registered",
+            "notes": {
+                "count": "2",
+                "web": "yes"
+            },
+            "created_at": 1562313764
+        }
+    ]
+}
