@@ -1,42 +1,61 @@
 {
-    "refund_status": "partial",
-    "service_tax": 0,
-    "currency": "INR",
     "id": "dummy_payment_id",
-    "payout_type": "Cr",
-    "fee": 5,
-    "payout_amount": 995,
-    "international": false,
-    "method": "upi",
-    "vpa": "payabbhi@bank",
-    "status": "refunded",
-    "description": "new payment done",
-    "order_id": "dummy_order_id",
     "object": "payment",
-    "bank": "",
-    "refunds": {
-        "total_count": 1,
-        "object": "list",
-        "data": [
-            {
-                "payment_id": "dummy_payment_id",
-                "created_at": 1495889335,
-                "object": "refund",
-                "currency": "INR",
-                "amount": 1,
-                "notes": {},
-                "id": "rfnd_WJLmKdUEfj92snLF"
-            }
-        ]
-    },
-    "refunded_amount": 1,
-    "notes": {
-        "merchant": "id"
-    },
-    "email": "test@ppm.com",
     "amount": 1000,
+    "currency": "INR",
+    "status": "captured",
+    "order_id": "order_D9kQbGJAmGwJ2XMK",
+    "invoice_id": "",
+    "international": false,
+    "method": "card",
+    "description": "For online purchase of 3 Items",
+    "card": "visa-debit",
+    "bank": "",
+    "wallet": "",
+    "vpa": "",
+    "customer_id": "cust_2BCT1Tvgg1gNjVPu",
+    "email": "test@example.com",
     "contact": "9999999999",
-    "error_description": "",
+    "notes": null,
+    "fee": 5,
+    "service_tax": 0,
+    "payout_amount": 995,
+    "payout_type": "",
+    "settled": false,
+    "settlement_id": "",
+    "refunded_amount": 400,
+    "refund_status": "partial",
+    "refunds": {
+      "total_count": 2,
+      "object": "list",
+      "data": [
+        {
+          "id": "rfnd_PWrr22qRNIjAkQ9U",
+          "object": "refund",
+          "amount": 200,
+          "currency": "INR",
+          "payment_id": "pay_mUy6UYsRvIxH9Qi2",
+          "notes": {
+            "reason": "order_canceled"
+          },
+          "created_at": 1495546589
+        },
+        {
+          "id": "rfnd_iqPqyu7Ds5UaC434",
+          "object": "refund",
+          "amount": 200,
+          "currency": "INR",
+          "payment_id": "pay_mUy6UYsRvIxH9Qi2",
+          "notes": {
+            "reason": "order_canceled"
+          },
+          "created_at": 1495547054
+        }
+      ]
+    },
     "error_code": "",
-    "created_at": 1495872181
-}
+    "error_description": "",
+    "created_at": 1495546415,
+    "virtual_account_id": "",
+    "payment_page_id": ""
+  }

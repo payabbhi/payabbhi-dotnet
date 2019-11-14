@@ -1,0 +1,62 @@
+{
+    "total_count": 45,
+    "object": "list",
+    "data": [
+        {
+            "id": "va_2Ap40rOxc6VZ0wah",
+            "object": "virtual_account",
+            "status": "active",
+            "paid_amount": 0,
+            "customer_id": "cust_2BCT1Tvgg1gNjVPu",
+            "email": "a@b.com",
+            "contact_no": "9999999999",
+            "order_id": "order_bksvkhdnvnfvmkfmdv",
+            "invoice_id": "invc_bkjcbdbcclqsmcdsvf",
+            "description": "virtual payment",
+            "collection_methods": [
+                {
+                    "id": "bank_etSpvQFVbsHb1jLG",
+                    "object": "bank_account",
+                    "name": "Bruce",
+                    "account_no": "AP09AR000000000014",
+                    "ifsc": "YESB0CMSNOC",
+                    "created_at": 1560340202
+                }
+            ],
+            "notification_method": "both",
+            "customer_notification_by": "platform",
+            "notes": {
+                "channel": "virtual_account"
+            },
+            "created_at": 1560340202
+        },
+        {
+            "id": "va_f1bN6FztYtJR1uLR",
+            "object": "virtual_account",
+            "status": "active",
+            "paid_amount": 0,
+            "customer_id": "cust_2BCT1Tvgg1gNjVPu",
+            "email": "b@c.com",
+            "contact_no": "8888888888",
+            "order_id": "order_bksvkhdnvnfvmkfmdv",
+            "invoice_id": "invc_bkjcbdbcclqsmcdsvf",
+            "description": "virtual payment",
+            "collection_methods": [
+                {
+                    "id": "bank_Iz5sGHZaDcwXejCD",
+                    "object": "bank_account",
+                    "name": "Carla",
+                    "account_no": "AP09AR000000000016",
+                    "ifsc": "YESB0CMSNOC",
+                    "created_at": 1560339872
+                }
+            ],
+            "notification_method": "both",
+            "customer_notification_by": "platform",
+            "notes": {
+                "channel": "virtual_account"
+            },
+            "created_at": 1560339872
+        }
+    ]
+}

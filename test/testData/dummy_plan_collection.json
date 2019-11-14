@@ -1,0 +1,30 @@
+{
+    "total_count": 2,
+    "object": "list",
+    "data": [
+        {
+            "id": "plan_P7wNUwTdGC2u2n2I",
+            "object": "plan",
+            "product_id": "prod_wJ6DyX5Bgg2LqAqt",
+            "name": "",
+            "amount": 100,
+            "currency": "INR",
+            "frequency": 2,
+            "interval": "month(s)",
+            "notes": null,
+            "created_at": 1539158721
+        },
+        {
+            "id": "plan_wUHIpy3ZOC7DzOvw",
+            "object": "plan",
+            "product_id": "prod_wJ6DyX5Bgg2LqAqt",
+            "name": "",
+            "amount": 100,
+            "currency": "INR",
+            "frequency": 2,
+            "interval": "month(s)",
+            "notes": null,
+            "created_at": 1539001289
+        }
+    ]
+}

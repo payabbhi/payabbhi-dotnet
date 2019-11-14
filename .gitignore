@@ -11,6 +11,7 @@ packages
 test/obj/
 *.snk
 dist
+*.sh
 
 # Build related
 tools/**
@@ -18,3 +19,5 @@ tools/**
 .dotnet/
 .vs/
 */Properties/AssemblyInfo.cs
+result.xml
+coverageReports/*

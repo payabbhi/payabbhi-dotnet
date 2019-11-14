@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +20,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -48,8 +49,20 @@
     <Compile Include="..\src\HttpMethod.cs" />
     <Compile Include="..\src\Client.cs" />
     <Compile Include="..\src\Payment.cs" />
+    <Compile Include="..\src\PaymentLink.cs" />
     <Compile Include="..\src\Refund.cs" />
     <Compile Include="..\src\Order.cs" />
+    <Compile Include="..\src\Product.cs" />
+    <Compile Include="..\src\Plan.cs" />
+    <Compile Include="..\src\Customer.cs" />
+    <Compile Include="..\src\Subscription.cs" />
+    <Compile Include="..\src\VirtualAccount.cs" />
+    <Compile Include="..\src\InvoiceItem.cs" />
+    <Compile Include="..\src\Invoice.cs" />
+    <Compile Include="..\src\BeneficiaryAccount.cs" />
+    <Compile Include="..\src\Transfer.cs" />
+    <Compile Include="..\src\Event.cs" />
+    <Compile Include="..\src\Settlement.cs" />
     <Compile Include="..\src\Utility.cs" />
     <Compile Include="..\src\Errors\BaseError.cs" />
     <Compile Include="..\src\Errors\InvalidRequestError.cs" />
@@ -68,6 +81,8 @@
     <Compile Include="..\src\PayabbhiHttpWebRequestFactory.cs" />
     <Compile Include="..\src\CurrentOS.cs" />
     <Compile Include="..\src\EmiInfo.cs" />
+    <Compile Include="..\src\CollectionMethod.cs" />
+    <Compile Include="..\src\BankAccount.cs" />
     <Compile Include="..\src\OSHelper.cs" />
     <Compile Include="..\src\PayabbhiList.cs" />
   </ItemGroup>

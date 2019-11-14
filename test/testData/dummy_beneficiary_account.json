@@ -1,0 +1,19 @@
+{
+    "id": "dummy_beneficiary_account_id",
+    "object": "beneficiary_account",
+    "name": "Bruce Wayne",
+    "contact_no": "1234567890",
+    "email_id": "benf1170@abc.com",
+    "business_name": "benf_business",
+    "business_entity_type": "Individual",
+    "beneficiary_name": "ben_test",
+    "ifsc": "IFSC0001890",
+    "bank_account_number": "50100000219",
+    "account_type": "Savings",
+    "status": "registered",
+    "notes": {
+        "count": "2",
+        "web": "website"
+    },
+    "created_at": 1562333156
+}

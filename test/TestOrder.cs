@@ -1,101 +1,85 @@
 using System.Collections.Generic;
 using System.IO;
-using NUnit.Framework;
 using Payabbhi;
 using Payabbhi.Error;
+using Xunit;
 
-namespace UnitTesting.Payabbhi.Tests
-{
-	[TestFixture]
-	public class TestOrder
-	{
-		const string ACCESSID = "access_id";
-		const string SECRETKEY = "secret_key";
-		const string ORDERID = "dummy_order_id";
-		string orderUrl = "api/v1/orders";
-		Client client;
+namespace UnitTesting.Payabbhi.Tests {
+    public class TestOrder {
+        const string ACCESSID = "access_id";
+        const string SECRETKEY = "secret_key";
+        const string ORDERID = "dummy_order_id";
+        string orderUrl = "api/v1/orders";
 
-		public void Init(string accessID, string secretKey, IHttpWebRequestFactory httpFactory)
-		{
-			client = new Client(accessID, secretKey, httpFactory);
-		}
+        [Fact]
+        public void TestGetAllOrders () {
+            string filepath = "dummy_order_collection.json";
+            Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, orderUrl));
+            var result = client.Order.All ();
+            string expectedJsonString = Helper.GetJsonString (filepath);
+            Helper.AssertEntity (result, expectedJsonString);
+        }
 
-		[Test]
-		public void TestGetAllOrders()
-		{
-			string filepath = "dummy_order_collection.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, orderUrl));
-			var result = client.Order.All();
-			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertListOfOrders(result, expectedJsonString);
-		}
+        [Fact]
+        public void TestGetAllOrdersWithFilters () {
+            string filepath = "dummy_order_collection_filters.json";
+            Dictionary<string, object> options = new Dictionary<string, object> ();
+            options.Add ("count", 3);
+            options.Add ("skip", 2);
+            string url = string.Format ("{0}?count={1}&skip={2}", orderUrl, options["count"], options["skip"]);
 
-		[Test]
-		public void TestGetAllOrdersWithFilters()
-		{
-			string filepath = "dummy_order_collection_filters.json";
-			Dictionary<string, object> options = new Dictionary<string, object>();
-			options.Add("count", 3);
-			options.Add("skip", 2);
-			string url = string.Format("{0}?count={1}&skip={2}", orderUrl, options["count"], options["skip"]);
+            Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, url));
+            var result = client.Order.All (options);
+            string expectedJsonString = Helper.GetJsonString (filepath);
+            Helper.AssertEntity (result, expectedJsonString);
+        }
 
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			var result = client.Order.All(options);
-			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertListOfOrders(result, expectedJsonString);
-		}
+        [Fact]
+        public void TestRetrieveOrder () {
+            string filepath = "dummy_order.json";
+            string url = string.Format ("{0}/{1}", orderUrl, ORDERID);
+            Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, url));
+            Order order = client.Order.Retrieve (ORDERID);
+            string expectedJsonString = Helper.GetJsonString (filepath);
+            Helper.AssertEntity (order, expectedJsonString);
+        }
 
-		[Test]
-		public void TestRetrieveOrder()
-		{
-			string filepath = "dummy_order.json";
-			string url = string.Format("{0}/{1}", orderUrl, ORDERID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			Order order = client.Order.Retrieve(ORDERID);
-			var path = Path.Combine(TestContext.CurrentContext.TestDirectory, filepath);
-			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertOrder(order, expectedJsonString);
-		}
+        [Fact]
+        public void TestCreateOrder () {
+            string filepath = "dummy_order.json";
+            Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, orderUrl));
+            IDictionary<string, object> options = new Dictionary<string, object> ();
+            options.Add ("merchant_order_id", "mer_4gp");
+            options.Add ("amount", 1000);
+            options.Add ("currency", "INR");
+            Order order = client.Order.Create (options);
+            string expectedJsonString = Helper.GetJsonString (filepath);
+            Helper.AssertEntity (order, expectedJsonString);
+        }
 
-		[Test]
-		public void TestCreateOrder()
-		{
-			string filepath = "dummy_order.json";
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, orderUrl));
-			IDictionary<string, object> options = new Dictionary<string, object>();
-			options.Add("merchant_order_id", "mer_4gp");
-			options.Add("amount", 1000);
-			options.Add("currency", "INR");
-			Order order = client.Order.Create(options);
-			string expectedJsonString = Helper.GetJsonString(filepath);
-			Helper.AssertOrder(order, expectedJsonString);
-		}
+        [Fact]
+        public void TestGetPaymentsByOrder () {
+            string filepath = "dummy_order.json";
+            string url = string.Format ("{0}/{1}", orderUrl, ORDERID);
+            Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, url));
+            Order order = client.Order.Retrieve (ORDERID);
 
-		[Test]
-		public void TestGetPaymentsByOrder()
-		{
-			string filepath = "dummy_order.json";
-			string url = string.Format("{0}/{1}", orderUrl, ORDERID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url));
-			Order order = client.Order.Retrieve(ORDERID);
+            string filepath2 = "dummy_order_payments.json";
+            string url2 = string.Format ("{0}/{1}/payments", orderUrl, ORDERID);
+            client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath2, url2));
+            var payments = order.Payments ();
+            string expectedJsonString = Helper.GetJsonString (filepath2);
+            Helper.AssertEntity (payments, expectedJsonString);
+        }
 
-			string filepath2 = "dummy_order_payments.json";
-			string url2 = string.Format("{0}/{1}/payments", orderUrl, ORDERID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath2, url2));
-			var payments = order.Payments();
-			string expectedJsonString = Helper.GetJsonString(filepath2);
-			Helper.AssertListOfPayments(payments, expectedJsonString);
-		}
-
-		[Test]
-		public void TestEmptyOrderRetrievesPayment()
-		{
-			string filepath = "dummy_order_payments.json";
-			string url2 = string.Format("{0}/{1}/payments", orderUrl, ORDERID);
-			Init(ACCESSID, SECRETKEY, Helper.GetMockRequestFactory(filepath, url2));
-			var ex = Assert.Throws<InvalidRequestError>(() => client.Order.Payments());
-			Assert.That(ex.Message, Is.EqualTo("message: Object Id not set\n"));
-			Assert.That(ex.Description, Is.EqualTo(Constants.Messages.InvalidCallError));
-		}
-	}
+        [Fact]
+        public void TestEmptyOrderRetrievesPayment () {
+            string filepath = "dummy_order_payments.json";
+            string url2 = string.Format ("{0}/{1}/payments", orderUrl, ORDERID);
+            Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, url2));
+            var ex = Assert.Throws<InvalidRequestError> (() => client.Order.Payments ());
+            Assert.Equal (ex.Message, "message: Object Id not set\n");
+            Assert.Equal (ex.Description, Constants.Messages.InvalidCallError);
+        }
+    }
 }

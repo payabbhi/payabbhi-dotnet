@@ -1,0 +1,72 @@
+{
+    "total_count": 6,
+    "object": "list",
+    "data": [
+      {
+        "id": "stl_wmjBUMNyLnzGbFKU",
+        "object": "settlement",
+        "amount": 952800,
+        "currency": "INR",
+        "status": "settled",
+        "fees": 47200,
+        "gst": 7200,
+        "utr": "utr29zGbFatpqmKZkQU",
+        "settled_at": 1544530263
+      },
+      {
+        "id": "stl_rvJlf9exdFRg3gbt",
+        "object": "settlement",
+        "amount": 358400,
+        "currency": "INR",
+        "status": "processing",
+        "fees": 141600,
+        "gst": 21600,
+        "utr": "",
+        "settled_at": 0
+      },
+      {
+        "id": "stl_ertBUMNyLnzGbFKU",
+        "object": "settlement",
+        "amount": 95280,
+        "currency": "INR",
+        "status": "settled",
+        "fees": 4720,
+        "gst": 200,
+        "utr": "utr29zGbdatpqmKZkQU",
+        "settled_at": 1544530263
+      },
+      {
+        "id": "stl_rvJwf9exdFRg3gbt",
+        "object": "settlement",
+        "amount": 35840,
+        "currency": "INR",
+        "status": "processing",
+        "fees": 14160,
+        "gst": 2160,
+        "utr": "",
+        "settled_at": 0
+      },
+      {
+        "id": "stl_wmjBUMNymnzGbFKU",
+        "object": "settlement",
+        "amount": 9520,
+        "currency": "INR",
+        "status": "settled",
+        "fees": 470,
+        "gst": 70,
+        "utr": "utr29zGbFatqwmKZkQU",
+        "settled_at": 1544530264
+      },
+      {
+        "id": "stl_rvJlf1exdFRg3gbt",
+        "object": "settlement",
+        "amount": 358400,
+        "currency": "INR",
+        "status": "processing",
+        "fees": 141600,
+        "gst": 21600,
+        "utr": "",
+        "settled_at": 0
+      }
+    ]
+  }
