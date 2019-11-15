@@ -2,7 +2,7 @@
 
 Changelog for payabbhi-dotnet.
 
-## [1.0.2] - 2019-09-18
+## [2.0.0] - 2019-11-15
 ### Added
 -  Support for PaymentLink, VirtualAccount, BeneficiaryAccount, Settlement, CollectionMethod APIs
 -  Support for Product, Plan, Customer, Subscription, Invoice Item, Invoice, Transfer, Event APIs
