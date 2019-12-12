@@ -45,7 +45,13 @@ namespace UnitTesting.Payabbhi.Tests {
         public void TestCreateVirtualAccount () {
             string filepath = "dummy_virtual_account.json";
             Client client = new Client (ACCESSID, SECRETKEY, Helper.GetMockRequestFactory (filepath, virtualAccountURL));
-            string[] collectionMethod = { "bank_account" };
+            IDictionary<string, object> upi = new Dictionary<string, object> ();
+            upi.Add ("amount", 1000);
+            
+            IDictionary<string, object> collectionMethod = new Dictionary<string, object> ();
+            collectionMethod.Add ("bank_account", "");
+            collectionMethod.Add ("upi", upi);
+            
             IDictionary<string, object> options = new Dictionary<string, object> ();
             options.Add ("invoice_id", "invt_srxOZZk6dIgWTVls");
             options.Add ("collection_methods", collectionMethod);
