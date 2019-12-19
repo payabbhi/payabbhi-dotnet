@@ -2,6 +2,10 @@
 
 Changelog for payabbhi-dotnet.
 
+## [2.0.1] - 2019-12-19
+### Added
+- Support for UPI as collection method in virtual account
+
 ## [2.0.0] - 2019-11-15
 ### Added
 -  Support for PaymentLink, VirtualAccount, BeneficiaryAccount, Settlement, CollectionMethod APIs
