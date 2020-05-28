@@ -14,6 +14,15 @@ namespace Payabbhi {
         [JsonProperty ("amount")]
         public int Amount { get; set; }
 
+        [JsonProperty ("amount_paid")]
+        public int AmountPaid { get; set; }
+
+        [JsonProperty ("amount_due")]
+        public int AmountDue { get; set; }
+
+        [JsonProperty ("partial_payment_mode")]
+        public bool PartialPaymentMode { get; set; }
+
         [JsonProperty ("billing_method")]
         public string BillingMethod { get; set; }
 
