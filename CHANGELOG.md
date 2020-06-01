@@ -2,6 +2,10 @@
 
 Changelog for payabbhi-dotnet.
 
+## [2.0.2] - 2020-05-28
+### Added
+- Support for partial payment fields for Invoice and Payment Link
+
 ## [2.0.1] - 2019-12-19
 ### Added
 - Support for UPI as collection method in virtual account
