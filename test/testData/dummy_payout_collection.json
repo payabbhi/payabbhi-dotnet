@@ -1,0 +1,46 @@
+{
+    "total_count": 12,
+    "object": "list",
+    "data": [
+        {
+            "id": "pout_DBzMRrGfIQtHoBs7",
+            "object": "payout",
+            "remittance_account_no": "1234567890",
+            "beneficiary_id": "",
+            "beneficiary_ifsc": "ABCD1234567",
+            "beneficiary_account_no": "01234567890",
+            "beneficiary_name": "BenTest",
+            "amount": 1000,
+            "currency": "INR",
+            "method": "bank_transfer",
+            "instrument": "NEFT",
+            "purpose": "cashback",
+            "merchant_reference_id": "ref_00001",
+            "narration": "info",
+            "status": "in_process",
+            "utr": "utr0001eeqTRqhE9jKfrjqu7lW1GK7rDoC",
+            "notes": null,
+            "created_at": 1572845750
+        },
+        {
+            "id": "pout_BtCejfds88oRPIWV",
+            "object": "payout",
+            "remittance_account_no": "1234567890",
+            "beneficiary_id": "",
+            "beneficiary_ifsc": "ABCD1234567",
+            "beneficiary_account_no": "01234567890",
+            "beneficiary_name": "BenTest",
+            "amount": 500,
+            "currency": "INR",
+            "method": "bank_transfer",
+            "instrument": "IMPS",
+            "purpose": "vendor_payout",
+            "merchant_reference_id": "test0123",
+            "narration": "test",
+            "status": "successful",
+            "utr": "utr0001h6XAPJnD824ZjcncZ98WP0iR1JK",
+            "notes": {},
+            "created_at": 1572611390
+        }
+    ]
+}
