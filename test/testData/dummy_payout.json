@@ -1,0 +1,20 @@
+{
+    "id": "dummy_payout_id",
+    "object": "payout",
+    "remittance_account_no": "1234567890",
+    "beneficiary_id": "",
+    "beneficiary_ifsc": "ABCD1234567",
+    "beneficiary_account_no": "01234567890",
+    "beneficiary_name": "BenTest",
+    "amount": 1000,
+    "currency": "INR",
+    "method": "bank_transfer",
+    "instrument": "NEFT",
+    "purpose": "cashback",
+    "merchant_reference_id": "ref_00001",
+    "narration": "info",
+    "status": "in_process",
+    "utr": "utr0001eeqTRqhE9jKfrjqu7lW1GK7rDoC",
+    "notes": null,
+    "created_at": 1572845750
+}

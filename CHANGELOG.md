@@ -2,6 +2,10 @@
 
 Changelog for payabbhi-dotnet.
 
+# [2.0.3] - 2020-06-10
+### Added
+- Support for Payout , Remittance Account APIs
+
 ## [2.0.2] - 2020-05-28
 ### Added
 - Support for partial payment fields for Invoice and Payment Link

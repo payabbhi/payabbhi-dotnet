@@ -64,6 +64,8 @@
     <Compile Include="TestPaymentLink.cs" />
     <Compile Include="TestSettlement.cs" />
     <Compile Include="TestVirtualAccount.cs" />
+    <Compile Include="TestPayout.cs" />
+    <Compile Include="TestRemittanceAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="testData\" />

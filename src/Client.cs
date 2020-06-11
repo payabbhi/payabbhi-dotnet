@@ -23,6 +23,8 @@ namespace Payabbhi {
         Transfer transfer;
         Event evt;
         Settlement settlement;
+        Payout payout;
+        RemittanceAccount remittanceAccount;
         Utility utility;
         static IDictionary<string, string> appInfo;
 
@@ -223,6 +225,24 @@ namespace Payabbhi {
                     settlement = new Settlement ();
                 }
                 return settlement;
+            }
+        }
+
+        public Payout Payout {
+            get {
+                if (payout == null) {
+                    payout = new Payout ();
+                }
+                return payout;
+            }
+        }
+
+        public RemittanceAccount RemittanceAccount {
+            get {
+                if (remittanceAccount == null) {
+                    remittanceAccount = new RemittanceAccount ();
+                }
+                return remittanceAccount;
             }
         }
 

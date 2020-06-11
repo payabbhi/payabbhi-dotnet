@@ -1,0 +1,10 @@
+{
+    "id": "dummy_remittance_account_id",
+    "object": "remittance_account",
+    "balance_amount": "20000",
+    "currency": "INR",
+    "account_type": "Savings",
+    "ifsc": "ABCD1234567",
+    "beneficiary_name": "BenTest",
+    "low_balance_alert": false
+}
